@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ховринская Гимназия "Лампада" - Главная</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header class="school-header">
+        <div class="header-container">
+            <div class="logo-section">
+                <div class="school-logo">
+                    <!-- Место для логотипа гимназии -->
+                    <div class="logo-placeholder">Л</div>
+                </div>
+                <div class="school-titles">
+                    <h1 class="school-name">Ховринская Гимназия "Лампада"</h1>
+                    <p class="school-motto">Знание - свет, а незнание - тьма</p>
+                </div>
+            </div>
+
+            <div class="auth-section">
+                <div class="login-form">
+                    <input type="text" placeholder="Логин" id="loginInput">
+                    <input type="password" placeholder="Пароль" id="passwordInput">
+                    <button onclick="handleLogin()">Войти</button>
+                </div>
+                <div class="user-view" id="userView" style="display: none;">
+                    <span id="userGreeting"></span>
+                    <button onclick="handleLogout()">Выйти</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Основная навигация -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-link active">Главная</a>
+            <a href="about.html" class="nav-link">О гимназии</a>
+            <a href="teachers.html" class="nav-link">Преподаватели</a>
+            <a href="schedule.html" class="nav-link">Расписание</a>
+            <a href="news.html" class="nav-link">Новости</a>
+            <a href="students.html" class="nav-link">Ученикам</a>
+            <a href="parents.html" class="nav-link">Родителям</a>
+            <a href="contacts.html" class="nav-link">Контакты</a>
+        </div>
+    </nav>
+
+    <!-- Основной контент -->
+    <div class="main-container">
+        <!-- Боковая панель -->
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3>Быстрый доступ</h3>
+                <ul class="sidebar-links">
+                    <li><a href="electronic-diary.html">Электронный дневник</a></li>
+                    <li><a href="bell-schedule.html">Расписание звонков</a></li>
+                    <li><a href="library.html">Электронная библиотека</a></li>
+                    <li><a href="events.html">Мероприятия</a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>Объявления</h3>
+                <div class="announcements">
+                    <div class="announcement-item">
+                        <span class="announcement-date">15.12.2023</span>
+                        <p>Родительское собрание для 5-х классов</p>
+                    </div>
+                    <div class="announcement-item">
+                        <span class="announcement-date">14.12.2023</span>
+                        <p>Олимпиада по математике</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Основная content area -->
+        <main class="content-area">
+            <section class="welcome-section">
+                <h2>Добро пожаловать в гимназию "Лампада"</h2>
+                <p>Мы рады приветствовать вас на официальном сайте нашей гимназии. Здесь вы найдете всю необходимую информацию о жизни нашего учебного заведения.</p>
+            </section>
+
+            <section class="features-grid">
+                <div class="feature-card">
+                    <h3>Качественное образование</h3>
+                    <p>Высококвалифицированные преподаватели и современные методики обучения</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Развитая инфраструктура</h3>
+                    <p>Современные классы, лаборатории и спортивные залы</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Внеурочная деятельность</h3>
+                    <p>Кружки, секции и творческие студии для всестороннего развития</p>
+                </div>
+            </section>
+
+            <section class="news-preview">
+                <h2>Последние новости</h2>
+                <div class="news-grid">
+                    <article class="news-item">
+                        <h4>Научная конференция</h4>
+                        <p>Ученики нашей гимназии заняли призовые места на городской научной конференции...</p>
+                        <a href="news.html" class="read-more">Подробнее</a>
+                    </article>
+                    <article class="news-item">
+                        <h4>Спортивные достижения</h4>
+                        <p>Команда по баскетболу вышла в финал региональных соревнований...</p>
+                        <a href="news.html" class="read-more">Подробнее</a>
+                    </article>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Карта и контакты -->
+    <section class="map-section">
+        <div class="map-container">
+            <h2>Как нас найти</h2>
+            <p class="address">Москва, Ховрино, ул. Фестивальная, д. 123</p>
+            <div class="map-wrapper">
+                <!-- Карта Яндекс -->
+                <script type="text/javascript" charset="utf-8" async
+                    <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A3f98f36f46658db31a5c44c15d5eec204f974d873a9ff17a48b34eb72a974431&amp;width=1200&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script>
+                </script>
+            </div>
+        </div>
+    </section>
+
+    <!-- Подвал -->
+    <footer class="school-footer">
+        <div class="footer-container">
+            <div class="footer-info">
+                <p>&copy; 2023 Ховринская Гимназия "Лампада". Все права защищены.</p>
+                <p>Телефон: +7 (495) 123-45-67 | Email: info@lampada-gymnasium.ru</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function handleLogin() {
+            // Заглушка для функционала входа
+            document.getElementById('userView').style.display = 'block';
+            document.querySelector('.login-form').style.display = 'none';
+            document.getElementById('userGreeting').textContent = 'Добро пожаловать!';
+        }
+
+        function handleLogout() {
+            // Заглушка для функционала выхода
+            document.getElementById('userView').style.display = 'none';
+            document.querySelector('.login-form').style.display = 'flex';
+        }
+    </script>
+</body>
+</html>

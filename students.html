@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ученикам - Ховринская Гимназия "Лампада"</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header class="school-header">
+        <div class="header-container">
+            <div class="logo-section">
+                <div class="school-logo">
+                    <div class="logo-placeholder">Л</div>
+                </div>
+                <div class="school-titles">
+                    <h1 class="school-name">Ховринская Гимназия "Лампада"</h1>
+                    <p class="school-motto">Знание - свет, а незнание - тьма</p>
+                </div>
+            </div>
+
+            <div class="auth-section">
+                <div class="login-form">
+                    <input type="text" placeholder="Логин" id="loginInput">
+                    <input type="password" placeholder="Пароль" id="passwordInput">
+                    <button onclick="handleLogin()">Войти</button>
+                </div>
+                <div class="user-view" id="userView" style="display: none;">
+                    <span id="userGreeting"></span>
+                    <button onclick="handleLogout()">Выйти</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Основная навигация -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-link">Главная</a>
+            <a href="about.html" class="nav-link">О гимназии</a>
+            <a href="teachers.html" class="nav-link">Преподаватели</a>
+            <a href="schedule.html" class="nav-link">Расписание</a>
+            <a href="news.html" class="nav-link">Новости</a>
+            <a href="students.html" class="nav-link active">Ученикам</a>
+            <a href="parents.html" class="nav-link">Родителям</a>
+            <a href="contacts.html" class="nav-link">Контакты</a>
+        </div>
+    </nav>
+
+    <!-- Основной контент -->
+    <div class="main-container">
+        <!-- Боковая панель -->
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3>Быстрый доступ</h3>
+                <ul class="sidebar-links">
+                    <li><a href="#homework">Домашние задания</a></li>
+                    <li><a href="#exams">Подготовка к экзаменам</a></li>
+                    <li><a href="#circles">Кружки и секции</a></li>
+                    <li><a href="#library">Электронная библиотека</a></li>
+                    <li><a href="#olympiads">Олимпиады</a></li>
+                    <li><a href="#rules">Правила гимназии</a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>Полезные ресурсы</h3>
+                <div class="resources-list">
+                    <a href="https://mos.ru" class="resource-link" target="_blank">
+                        💻 Портал mos.ru
+                    </a>
+                    <a href="https://edu.gov.ru" class="resource-link" target="_blank">
+                        📚 Минпросвещения РФ
+                    </a>
+                    <a href="https://fipi.ru" class="resource-link" target="_blank">
+                        🎯 ФИПИ (ЕГЭ/ОГЭ)
+                    </a>
+                    <a href="https://resh.edu.ru" class="resource-link" target="_blank">
+                        📖 Российская электронная школа
+                    </a>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>Важные даты</h3>
+                <div class="important-dates">
+                    <div class="date-item upcoming">
+                        <span class="date">18.12</span>
+                        <span class="event">Контрольная по математике (9-11 кл.)</span>
+                    </div>
+                    <div class="date-item">
+                        <span class="date">20.12</span>
+                        <span class="event">Родительское собрание</span>
+                    </div>
+                    <div class="date-item">
+                        <span class="date">25.12</span>
+                        <span class="event">Новогодний концерт</span>
+                    </div>
+                    <div class="date-item upcoming">
+                        <span class="date">28.12</span>
+                        <span class="event">Сдача проектов по физике</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Основная content area -->
+        <main class="content-area">
+            <section class="page-header">
+                <h1>Ученикам</h1>
+                <p class="page-subtitle">Все необходимое для успешной учебы в нашей гимназии</p>
+            </section>
+
+            <!-- Электронный дневник -->
+            <section class="students-section quick-access">
+                <h2>📱 Электронный дневник</h2>
+                <div class="diary-cards">
+                    <div class="diary-card">
+                        <h3>Оценки</h3>
+                        <p>Просмотр текущих оценок и успеваемости</p>
+                        <a href="#" class="diary-btn primary">Перейти к оценкам</a>
+                    </div>
+                    <div class="diary-card">
+                        <h3>Домашние задания</h3>
+                        <p>Актуальные задания по всем предметам</p>
+                        <a href="#homework" class="diary-btn secondary">Смотреть задания</a>
+                    </div>
+                    <div class="diary-card">
+                        <h3>Расписание</h3>
+                        <p>Уроки, звонки и изменения в расписании</p>
+                        <a href="schedule.html" class="diary-btn secondary">Открыть расписание</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Домашние задания -->
+            <section id="homework" class="students-section">
+                <h2>📚 Домашние задания</h2>
+                <div class="homework-filters">
+                    <select id="classFilter" class="filter-select">
+                        <option value="all">Все классы</option>
+                        <option value="5">5 класс</option>
+                        <option value="6">6 класс</option>
+                        <option value="7">7 класс</option>
+                        <option value="8">8 класс</option>
+                        <option value="9">9 класс</option>
+                        <option value="10">10 класс</option>
+                        <option value="11">11 класс</option>
+                    </select>
+                    <select id="subjectFilter" class="filter-select">
+                        <option value="all">Все предметы</option>
+                        <option value="math">Математика</option>
+                        <option value="russian">Русский язык</option>
+                        <option value="literature">Литература</option>
+                        <option value="physics">Физика</option>
+                        <option value="chemistry">Химия</option>
+                        <option value="english">Английский язык</option>
+                    </select>
+                </div>
+
+                <div class="homework-list">
+                    <div class="homework-item" data-class="9" data-subject="math">
+                        <div class="homework-header">
+                            <h4>Математика</h4>
+                            <span class="homework-date">до 15.12.2023</span>
+                        </div>
+                        <p class="homework-description">Решить задачи №125-130 из учебника. Подготовить доказательство теоремы Пифагора.</p>
+                        <div class="homework-meta">
+                            <span class="homework-class">9 класс</span>
+                            <span class="homework-teacher">Иванов В.П.</span>
+                        </div>
+                    </div>
+
+                    <div class="homework-item" data-class="10" data-subject="physics">
+                        <div class="homework-header">
+                            <h4>Физика</h4>
+                            <span class="homework-date">до 16.12.2023</span>
+                        </div>
+                        <p class="homework-description">Лабораторная работа №5 "Изучение закона Ома для участка цепи". Отчет оформить в тетради.</p>
+                        <div class="homework-meta">
+                            <span class="homework-class">10 класс</span>
+                            <span class="homework-teacher">Фёдоров С.А.</span>
+                        </div>
+                    </div>
+
+                    <div class="homework-item" data-class="11" data-subject="russian">
+                        <div class="homework-header">
+                            <h4>Русский язык</h4>
+                            <span class="homework-date">до 14.12.2023</span>
+                        </div>
+                        <p class="homework-description">Написать сочинение-рассуждение на тему "Современный русский язык: проблемы и перспективы". Объем: 250-300 слов.</p>
+                        <div class="homework-meta">
+                            <span class="homework-class">11 класс</span>
+                            <span class="homework-teacher">Смирнова М.В.</span>
+                        </div>
+                    </div>
+
+                    <div class="homework-item" data-class="8" data-subject="english">
+                        <div class="homework-header">
+                            <h4>Английский язык</h4>
+                            <span class="homework-date">до 13.12.2023</span>
+                        </div>
+                        <p class="homework-description">Подготовить презентацию о достопримечательностях Лондона. Выучить новые слова из Unit 7.</p>
+                        <div class="homework-meta">
+                            <span class="homework-class">8 класс</span>
+                            <span class="homework-teacher">Васнецова К.О.</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Подготовка к экзаменам -->
+            <section id="exams" class="students-section">
+                <h2>🎯 Подготовка к экзаменам</h2>
+                <div class="exams-grid">
+                    <div class="exam-card oge">
+                        <h3>ОГЭ - 9 класс</h3>
+                        <div class="exam-subjects">
+                            <h4>Обязательные предметы:</h4>
+                            <ul>
+                                <li>Русский язык</li>
+                                <li>Математика</li>
+                            </ul>
+                            <h4>По выбору:</h4>
+                            <ul>
+                                <li>Физика</li>
+                                <li>Химия</li>
+                                <li>Биология</li>
+                                <li>Обществознание</li>
+                                <li>Английский язык</li>
+                            </ul>
+                        </div>
+                        <a href="#" class="exam-materials">Материалы для подготовки →</a>
+                    </div>
+
+                    <div class="exam-card ege">
+                        <h3>ЕГЭ - 11 класс</h3>
+                        <div class="exam-subjects">
+                            <h4>Обязательные предметы:</h4>
+                            <ul>
+                                <li>Русский язык</li>
+                                <li>Математика (база/профиль)</li>
+                            </ul>
+                            <h4>Популярные предметы по выбору:</h4>
+                            <ul>
+                                <li>Обществознание</li>
+                                <li>Физика</li>
+                                <li>Информатика</li>
+                                <li>Английский язык</li>
+                                <li>Биология</li>
+                            </ul>
+                        </div>
+                        <a href="#" class="exam-materials">Демоверсии ЕГЭ →</a>
+                    </div>
+                </div>
+
+                <div class="preparation-tips">
+                    <h3>💡 Советы по подготовке</h3>
+                    <div class="tips-grid">
+                        <div class="tip-card">
+                            <h4>Составьте план</h4>
+                            <p>Распределите время на изучение каждого предмета. Начинайте подготовку заранее.</p>
+                        </div>
+                        <div class="tip-card">
+                            <h4>Решайте тесты</h4>
+                            <p>Регулярно решайте демоверсии и задания прошлых лет для понимания формата.</p>
+                        </div>
+                        <div class="tip-card">
+                            <h4>Посещайте консультации</h4>
+                            <p>Не пропускайте дополнительные занятия с преподавателями.</p>
+                        </div>
+                        <div class="tip-card">
+                            <h4>Отдыхайте</h4>
+                            <p>Делайте перерывы во время подготовки и высыпайтесь перед экзаменом.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Кружки и секции -->
+            <section id="circles" class="students-section">
+                <h2>🎨 Кружки и секции</h2>
+                <div class="circles-grid">
+                    <div class="circle-card">
+                        <h4>Математический кружок</h4>
+                        <p><strong>Руководитель:</strong> Иванов В.П.</p>
+                        <p><strong>Время:</strong> Понедельник, 15:00-16:30</p>
+                        <p><strong>Кабинет:</strong> 205</p>
+                        <span class="circle-tag">Наука</span>
+                    </div>
+
+                    <div class="circle-card">
+                        <h4>Литературный клуб</h4>
+                        <p><strong>Руководитель:</strong> Смирнова М.В.</p>
+                        <p><strong>Время:</strong> Среда, 14:30-16:00</p>
+                        <p><strong>Кабинет:</strong> 301</p>
+                        <span class="circle-tag">Творчество</span>
+                    </div>
+
+                    <div class="circle-card">
+                        <h4>Научное общество</h4>
+                        <p><strong>Руководитель:</strong> Орлова Н.Д.</p>
+                        <p><strong>Время:</strong> Пятница, 15:00-17:00</p>
+                        <p><strong>Кабинет:</strong> 105</p>
+                        <span class="circle-tag">Наука</span>
+                    </div>
+
+                    <div class="circle-card">
+                        <h4>Театр на английском</h4>
+                        <p><strong>Руководитель:</strong> Васнецова К.О.</p>
+                        <p><strong>Время:</strong> Вторник, 16:00-17:30</p>
+                        <p><strong>Кабинет:</strong> 412</p>
+                        <span class="circle-tag">Языки</span>
+                    </div>
+
+                    <div class="circle-card">
+                        <h4>Баскетбол</h4>
+                        <p><strong>Руководитель:</strong> Соколов Д.М.</p>
+                        <p><strong>Время:</strong> Пн, Ср, Пт 17:00-19:00</p>
+                        <p><strong>Место:</strong> Спортзал</p>
+                        <span class="circle-tag">Спорт</span>
+                    </div>
+
+                    <div class="circle-card">
+                        <h4>Шахматный клуб</h4>
+                        <p><strong>Руководитель:</strong> Николаев А.С.</p>
+                        <p><strong>Время:</strong> Четверг, 15:30-17:00</p>
+                        <p><strong>Кабинет:</strong> 215</p>
+                        <span class="circle-tag">Интеллект</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Подвал -->
+    <footer class="school-footer">
+        <div class="footer-container">
+            <div class="footer-info">
+                <p>&copy; 2023 Ховринская Гимназия "Лампада". Все права защищены.</p>
+                <p>Телефон: +7 (495) 123-45-67 | Email: info@lampada-gymnasium.ru</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function handleLogin() {
+            document.getElementById('userView').style.display = 'block';
+            document.querySelector('.login-form').style.display = 'none';
+            document.getElementById('userGreeting').textContent = 'Добро пожаловать!';
+        }
+
+        function handleLogout() {
+            document.getElementById('userView').style.display = 'none';
+            document.querySelector('.login-form').style.display = 'flex';
+        }
+
+        // Фильтрация домашних заданий
+        document.getElementById('classFilter').addEventListener('change', filterHomework);
+        document.getElementById('subjectFilter').addEventListener('change', filterHomework);
+
+        function filterHomework() {
+            const classFilter = document.getElementById('classFilter').value;
+            const subjectFilter = document.getElementById('subjectFilter').value;
+            const homeworkItems = document.querySelectorAll('.homework-item');
+
+            homeworkItems.forEach(item => {
+                const itemClass = item.getAttribute('data-class');
+                const itemSubject = item.getAttribute('data-subject');
+
+                const showClass = classFilter === 'all' || itemClass === classFilter;
+                const showSubject = subjectFilter === 'all' || itemSubject === subjectFilter;
+
+                if (showClass && showSubject) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Плавная прокрутка
+        document.querySelectorAll('.sidebar-links a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

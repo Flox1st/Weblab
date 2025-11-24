@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Английский язык - Лампадка</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="https://lampada-obr.ru/images/demo/logo.png" alt="Логотип">
+        </div>
+        <div class="site-name">Ховринская Гимназия "Лампадка"</div>
+        <div class="login-form">
+            <input type="text" placeholder="Логин">
+            <input type="password" placeholder="Пароль">
+            <button>Войти</button>
+        </div>
+    </header>
+
+    <nav class="nav-bar">
+        <a href="index.html">Главная</a>
+        <a href="program.html">Образовательная программа</a>
+        <a href="teachers.html">Каталог преподавателей</a>
+        <a href="contacts.html">Контакты</a>
+    </nav>
+
+    <div class="content">
+        <div class="sidebar">
+            <a href="index.html">Главная</a>
+            <a href="program.html">Образовательная программа</a>
+            <a href="english.html">Английский язык</a>
+            <a href="auth.html" id="sidebarAuthLink">Личный кабинет</a>
+        </div>
+
+        <div class="main-content">
+            <h1>Программа углубленного изучения английского языка</h1>
+
+            <h2>Описание программы</h2>
+
+            <div class="text-with-image">
+                <img src="https://lampada-obr.ru/images/s1/gimnazia03.jpg" alt="Урок английского" class="content-image">
+                <p>Уникальная программа изучения английского языка с использованием британских учебников и методик, разработанная совместно с преподавателями МГЛУ.</p>
+            </div>
+
+            <h2>Характеристики программы</h2>
+
+            <div class="product-features">
+                <ul class="square-list">
+                    <li><strong>Количество часов в неделю:</strong> 5-6 академических часов</li>
+                    <li><strong>Учебные материалы:</strong> Cambridge University Press</li>
+                    <li><strong>Уровень преподавателей:</strong> CELTA, МГЛУ</li>
+                    <li><strong>Формы работы:</strong> интерактивные занятия, проекты</li>
+                    <li><strong>Дополнительно:</strong> разговорные клубы, театр на английском</li>
+                </ul>
+            </div>
+
+            <h2>Методические особенности</h2>
+            <div class="product-special">
+                <ul class="circle-list">
+                    <li>Коммуникативный подход в обучении</li>
+                    <li>Раннее погружение в языковую среду</li>
+                    <li>Интеграция с другими предметами</li>
+                    <li>Подготовка к международным экзаменам</li>
+                    <li>Использование современных технологий</li>
+                </ul>
+            </div>
+
+            <h2>Подробное описание программы</h2>
+
+            <div class="product-details">
+                <p>Наша программа по английскому языку разработана с учетом лучших международных практик. С первого класса дети погружаются в языковую среду через игры, песни и творческие задания.</p>
+
+                <p>Мы используем аутентичные учебные материалы издательства Cambridge University Press, что обеспечивает соответствие международным стандартам. Наши преподаватели имеют сертификаты CELTA и опыт работы в ведущих языковых школах.</p>
+
+                <p>К четвертому классу наши ученики свободно общаются на бытовые темы, читают адаптированную литературу и готовы к сдаче первых международных экзаменов.</p>
+            </div>
+
+            <hr>
+
+            <p class="copyright">Все права защищены</p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Лампадка. Все права защищены.</p>
+        </div>
+    </footer>
+<script>
+    // Простая проверка авторизации для навигации
+    document.addEventListener('DOMContentLoaded', function() {
+        const user = localStorage.getItem('user');
+        const authLinks = document.querySelectorAll('a[href="auth.html"]');
+
+        if (user) {
+            authLinks.forEach(link => {
+                link.href = 'profile.html';
+                link.textContent = 'Личный кабинет';
+            });
+        }
+    });
+</script>
+<script src="header-auth.js"></script>
+</body>
+</html>

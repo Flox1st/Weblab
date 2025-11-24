@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Преподаватели - Ховринская Гимназия "Лампада"</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header class="school-header">
+        <div class="header-container">
+            <div class="logo-section">
+                <div class="school-logo">
+                    <div class="logo-placeholder">Л</div>
+                </div>
+                <div class="school-titles">
+                    <h1 class="school-name">Ховринская Гимназия "Лампада"</h1>
+                    <p class="school-motto">Знание - свет, а незнание - тьма</p>
+                </div>
+            </div>
+
+            <div class="auth-section">
+                <div class="login-form">
+                    <input type="text" placeholder="Логин" id="loginInput">
+                    <input type="password" placeholder="Пароль" id="passwordInput">
+                    <button onclick="handleLogin()">Войти</button>
+                </div>
+                <div class="user-view" id="userView" style="display: none;">
+                    <span id="userGreeting"></span>
+                    <button onclick="handleLogout()">Выйти</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Основная навигация -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-link">Главная</a>
+            <a href="about.html" class="nav-link">О гимназии</a>
+            <a href="teachers.html" class="nav-link active">Преподаватели</a>
+            <a href="schedule.html" class="nav-link">Расписание</a>
+            <a href="news.html" class="nav-link">Новости</a>
+            <a href="students.html" class="nav-link">Ученикам</a>
+            <a href="parents.html" class="nav-link">Родителям</a>
+            <a href="contacts.html" class="nav-link">Контакты</a>
+        </div>
+    </nav>
+
+    <!-- Основной контент -->
+    <div class="main-container">
+        <!-- Боковая панель -->
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3>Кафедры</h3>
+                <ul class="sidebar-links">
+                    <li><a href="#philology">Филология</a></li>
+                    <li><a href="#mathematics">Математика</a></li>
+                    <li><a href="#science">Естественные науки</a></li>
+                    <li><a href="#languages">Иностранные языки</a></li>
+                    <li><a href="#humanities">Общественные науки</a></li>
+                    <li><a href="#arts">Искусство и спорт</a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>Фильтры</h3>
+                <div class="filter-options">
+                    <select id="departmentFilter" class="filter-select">
+                        <option value="all">Все кафедры</option>
+                        <option value="philology">Филология</option>
+                        <option value="mathematics">Математика</option>
+                        <option value="science">Естественные науки</option>
+                        <option value="languages">Иностранные языки</option>
+                        <option value="humanities">Общественные науки</option>
+                        <option value="arts">Искусство и спорт</option>
+                    </select>
+
+                    <select id="categoryFilter" class="filter-select">
+                        <option value="all">Все категории</option>
+                        <option value="highest">Высшая категория</option>
+                        <option value="first">Первая категория</option>
+                        <option value="young">Молодой специалист</option>
+                    </select>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Основная content area -->
+        <main class="content-area">
+            <section class="page-header">
+                <h1>Наши преподаватели</h1>
+                <p class="page-subtitle">Высококвалифицированный педагогический состав</p>
+            </section>
+
+            <!-- Кафедра филологии -->
+            <section id="philology" class="department-section">
+                <h2 class="department-title">Кафедра филологии</h2>
+                <div class="teachers-grid">
+                    <div class="teacher-card" data-department="philology" data-category="highest">
+                        <div class="teacher-photo">
+                            <div class="photo-placeholder">СМ</div>
+                        </div>
+                        <div class="teacher-info">
+                            <h3>Смирнова Марина Васильевна</h3>
+                            <p class="teacher-subject">Русский язык и литература</p>
+                            <p class="teacher-qualification">Кандидат филологических наук, высшая категория</p>
+                            <p class="teacher-experience">Стаж: 25 лет</p>
+                            <p class="teacher-description">Эксперт ЕГЭ, автор методических пособий по подготовке к итоговому сочинению</p>
+                        </div>
+                    </div>
+
+                    <div class="teacher-card" data-department="philology" data-category="first">
+                        <div class="teacher-photo">
+                            <div class="photo-placeholder">ПА</div>
+                        </div>
+                        <div class="teacher-info">
+                            <h3>Петров Алексей Иванович</h3>
+                            <p class="teacher-subject">Русский язык</p>
+                            <p class="teacher-qualification">Первая категория</p>
+                            <p class="teacher-experience">Стаж: 12 лет</p>
+                            <p class="teacher-description">Руководитель школьного литературного клуба</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Кафедра математики -->
+            <section id="mathematics" class="department-section">
+                <h2 class="department-title">Кафедра математики</h2>
+                <div class="teachers-grid">
+                    <div class="teacher-card" data-department="mathematics" data-category="highest">
+                        <div class="teacher-photo">
+                            <div class="photo-placeholder">ИВ</div>
+                        </div>
+                        <div class="teacher-info">
+                            <h3>Иванов Владимир Петрович</h3>
+                            <p class="teacher-subject">Математика и информатика</p>
+                            <p class="teacher-qualification">Высшая категория, заслуженный учитель РФ</p>
+                            <p class="teacher-experience">Стаж: 30 лет</p>
+                            <p class="teacher-description">Подготовил 50+ победителей математических олимпиад</p>
+                        </div>
+                    </div>
+
+                    <div class="teacher-card" data-department="mathematics" data-category="young">
+                        <div class="teacher-photo">
+                            <div class="photo-placeholder">КЕ</div>
+                        </div>
+                        <div class="teacher-info">
+                            <h3>Кузнецова Елена Сергеевна</h3>
+                            <p class="teacher-subject">Математика</p>
+                            <p class="teacher-qualification">Молодой специалист</p>
+                            <p class="teacher-experience">Стаж: 3 года</p>
+                            <p class="teacher-description">Выпускница МГУ, руководитель математического кружка</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Кафедра естественных наук -->
+            <section id="science" class="department-section">
+                <h2 class="department-title">Кафедра естественных наук</h2>
+                <div class="teachers-grid">
+                    <div class="teacher-card" data-department="science" data-category="highest">
+                        <div class="teacher-photo">
+                            <div class="photo-placeholder">ОН</div>
+                        </div>
+                        <div class="teacher-info">
+                            <h3>Орлова Наталья Дмитриевна</h3>
+                            <p class="teacher-subject">Химия и биология</p>
+                            <p class="teacher-qualification">Кандидат химических наук, высшая категория</p>
+                            <p class="teacher-experience">Стаж: 20 лет</p>
+                            <p class="teacher-description">Руководитель научного общества учащихся</p>
+                        </div>
+                    </div>
+
+                    <div class="teacher-card" data-department="science" data-category="first">
+                        <div class="teacher-photo">
+                            <div class="photo-placeholder">ФС</div>
+                        </div>
+                        <div class="teacher-info">
+                            <h3>Фёдоров Сергей Александрович</h3>
+                            <p class="teacher-subject">Физика</p>
+                            <p class="teacher-qualification">Первая категория</p>
+                            <p class="teacher-experience">Стаж: 15 лет</p>
+                            <p class="teacher-description">Организатор школьных научных конференций</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Кафедра иностранных языков -->
+            <section id="languages" class="department-section">
+                <h2 class="department-title">Кафедра иностранных языков</h2>
+                <div class="teachers-grid">
+                    <div class="teacher-card" data-department="languages" data-category="highest">
+                        <div class="teacher-photo">
+                            <div class="photo-placeholder">ВК</div>
+                        </div>
+                        <div class="teacher-info">
+                            <h3>Васнецова Ксения Олеговна</h3>
+                            <p class="teacher-subject">Английский язык</p>
+                            <p class="teacher-qualification">Высшая категория, сертификат CELTA</p>
+                            <p class="teacher-experience">Стаж: 18 лет</p>
+                            <p class="teacher-description">Организатор международных студенческих обменов</p>
+                        </div>
+                    </div>
+
+                    <div class="teacher-card" data-department="languages" data-category="first">
+                        <div class="teacher-photo">
+                            <div class="photo-placeholder">МД</div>
+                        </div>
+                        <div class="teacher-info">
+                            <h3>Мартынова Дарья Викторовна</h3>
+                            <p class="teacher-subject">Немецкий и французский языки</p>
+                            <p class="teacher-qualification">Первая категория</p>
+                            <p class="teacher-experience">Стаж: 10 лет</p>
+                            <p class="teacher-description">Руководитель театра на иностранных языках</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Статистика преподавателей -->
+            <section class="teachers-stats">
+                <h2>Статистика педагогического состава</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">45</div>
+                        <div class="stat-label">преподавателей</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">85%</div>
+                        <div class="stat-label">высшая категория</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">15</div>
+                        <div class="stat-label">кандидатов наук</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">20+</div>
+                        <div class="stat-label">средний стаж</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Подвал -->
+    <footer class="school-footer">
+        <div class="footer-container">
+            <div class="footer-info">
+                <p>&copy; 2023 Ховринская Гимназия "Лампада". Все права защищены.</p>
+                <p>Телефон: +7 (495) 123-45-67 | Email: info@lampada-gymnasium.ru</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function handleLogin() {
+            document.getElementById('userView').style.display = 'block';
+            document.querySelector('.login-form').style.display = 'none';
+            document.getElementById('userGreeting').textContent = 'Добро пожаловать!';
+        }
+
+        function handleLogout() {
+            document.getElementById('userView').style.display = 'none';
+            document.querySelector('.login-form').style.display = 'flex';
+        }
+
+        // Фильтрация преподавателей
+        document.getElementById('departmentFilter').addEventListener('change', filterTeachers);
+        document.getElementById('categoryFilter').addEventListener('change', filterTeachers);
+
+        function filterTeachers() {
+            const department = document.getElementById('departmentFilter').value;
+            const category = document.getElementById('categoryFilter').value;
+            const teachers = document.querySelectorAll('.teacher-card');
+
+            teachers.forEach(teacher => {
+                const teacherDept = teacher.getAttribute('data-department');
+                const teacherCat = teacher.getAttribute('data-category');
+
+                const showDept = department === 'all' || teacherDept === department;
+                const showCat = category === 'all' || teacherCat === category;
+
+                if (showDept && showCat) {
+                    teacher.style.display = 'flex';
+                } else {
+                    teacher.style.display = 'none';
+                }
+            });
+        }
+
+        // Плавная прокрутка к кафедрам
+        document.querySelectorAll('.sidebar-links a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход и регистрация - Лампадка</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="https://lampada-obr.ru/images/demo/logo.png" alt="Логотип">
+        </div>
+        <div class="site-name">Ховринская Гимназия "Лампадка"</div>
+        <div class="login-form">
+            <!-- Пустой блок, так как мы на странице авторизации -->
+        </div>
+    </header>
+
+    <nav class="nav-bar">
+        <a href="index.html">Главная</a>
+        <a href="program.html">Образовательная программа</a>
+        <a href="english.html">Английский язык</a>
+        <a href="auth.html" id="authLink">Личный кабинет</a>
+    </nav>
+
+    <div class="content">
+        <div class="sidebar">
+            <a href="index.html">Главная</a>
+            <a href="program.html">Образовательная программа</a>
+            <a href="english.html">Английский язык</a>
+            <a href="auth.html" id="sidebarAuthLink">Личный кабинет</a>
+        </div>
+
+        <div class="main-content">
+            <div class="auth-container">
+                <div class="auth-tabs">
+                    <button class="auth-tab active" onclick="showTab('login')">Вход</button>
+                    <button class="auth-tab" onclick="showTab('register')">Регистрация</button>
+                </div>
+
+                <!-- Форма входа -->
+               <form id="loginForm" class="auth-form active">
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="loginPassword">Пароль</label>
+                        <input type="password" id="loginPassword" required>
+                    </div>
+
+                    <button type="submit" class="auth-btn">Войти</button>
+
+                    <div class="form-links">
+                        <a href="#" onclick="showTab('register')">Нет аккаунта? Зарегистрируйтесь</a>
+                    </div>
+                </form>
+
+                <!-- Форма регистрации -->
+                <form id="registerForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="regName">ФИО родителя</label>
+                        <input type="text" id="regName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="regEmail">Email</label>
+                        <input type="email" id="regEmail" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="regPhone">Телефон</label>
+                        <input type="tel" id="regPhone" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="regChildName">ФИО ребенка</label>
+                        <input type="text" id="regChildName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="regPassword">Пароль</label>
+                        <input type="password" id="regPassword" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="regConfirmPassword">Подтвердите пароль</label>
+                        <input type="password" id="regConfirmPassword" required>
+                    </div>
+
+                    <button type="submit" class="auth-btn">Зарегистрироваться</button>
+
+                    <div class="form-links">
+                        <a href="#" onclick="showTab('login')">Уже есть аккаунт? Войдите</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Лампадка. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="auth.js"></script>
+</body>
+</html>

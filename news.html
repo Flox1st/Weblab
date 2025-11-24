@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Новости - Ховринская Гимназия "Лампада"</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header class="school-header">
+        <div class="header-container">
+            <div class="logo-section">
+                <div class="school-logo">
+                    <div class="logo-placeholder">Л</div>
+                </div>
+                <div class="school-titles">
+                    <h1 class="school-name">Ховринская Гимназия "Лампада"</h1>
+                    <p class="school-motto">Знание - свет, а незнание - тьма</p>
+                </div>
+            </div>
+
+            <div class="auth-section">
+                <div class="login-form">
+                    <input type="text" placeholder="Логин" id="loginInput">
+                    <input type="password" placeholder="Пароль" id="passwordInput">
+                    <button onclick="handleLogin()">Войти</button>
+                </div>
+                <div class="user-view" id="userView" style="display: none;">
+                    <span id="userGreeting"></span>
+                    <button onclick="handleLogout()">Выйти</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Основная навигация -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-link">Главная</a>
+            <a href="about.html" class="nav-link">О гимназии</a>
+            <a href="teachers.html" class="nav-link">Преподаватели</a>
+            <a href="schedule.html" class="nav-link">Расписание</a>
+            <a href="news.html" class="nav-link active">Новости</a>
+            <a href="students.html" class="nav-link">Ученикам</a>
+            <a href="parents.html" class="nav-link">Родителям</a>
+            <a href="contacts.html" class="nav-link">Контакты</a>
+        </div>
+    </nav>
+
+    <!-- Основной контент -->
+    <div class="main-container">
+        <!-- Боковая панель -->
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3>Категории новостей</h3>
+                <ul class="sidebar-links">
+                    <li><a href="#" class="news-category active" data-category="all">Все новости</a></li>
+                    <li><a href="#" class="news-category" data-category="events">Мероприятия</a></li>
+                    <li><a href="#" class="news-category" data-category="achievements">Достижения</a></li>
+                    <li><a href="#" class="news-category" data-category="olympiads">Олимпиады</a></li>
+                    <li><a href="#" class="news-category" data-category="announcements">Объявления</a></li>
+                    <li><a href="#" class="news-category" data-category="sports">Спорт</a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>Архив новостей</h3>
+                <div class="archive-list">
+                    <a href="#" class="archive-month">Декабрь 2023</a>
+                    <a href="#" class="archive-month">Ноябрь 2023</a>
+                    <a href="#" class="archive-month">Октябрь 2023</a>
+                    <a href="#" class="archive-month">Сентябрь 2023</a>
+                    <a href="#" class="archive-month">Август 2023</a>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>Важные объявления</h3>
+                <div class="important-announcements">
+                    <div class="announcement urgent">
+                        <span class="announcement-badge">Срочно!</span>
+                        <p>Родительское собрание 20 декабря</p>
+                    </div>
+                    <div class="announcement info">
+                        <span class="announcement-badge">Инфо</span>
+                        <p>Каникулы с 30 декабря по 8 января</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Основная content area -->
+        <main class="content-area">
+            <section class="page-header">
+                <h1>Новости гимназии</h1>
+                <p class="page-subtitle">Самые свежие события из жизни нашей гимназии</p>
+            </section>
+
+            <!-- Поиск и фильтры -->
+            <section class="news-filters">
+                <div class="search-box">
+                    <input type="text" placeholder="Поиск новостей..." id="newsSearch">
+                    <button class="search-btn">Найти</button>
+                </div>
+                <div class="filter-options">
+                    <select id="sortNews" class="filter-select">
+                        <option value="newest">Сначала новые</option>
+                        <option value="oldest">Сначала старые</option>
+                        <option value="popular">По популярности</option>
+                    </select>
+                </div>
+            </section>
+
+            <!-- Сетка новостей -->
+            <section class="news-grid-section">
+                <div class="news-grid">
+                    <!-- Новость 1 -->
+                    <article class="news-card" data-category="achievements" data-date="2023-12-15">
+                        <div class="news-image">
+                            <div class="image-placeholder">Фото</div>
+                            <span class="news-category-badge achievements">Достижения</span>
+                        </div>
+                        <div class="news-content">
+                            <div class="news-meta">
+                                <span class="news-date">15 декабря 2023</span>
+                                <span class="news-views">📊 245</span>
+                            </div>
+                            <h3 class="news-title">Победа в городской олимпиаде по математике</h3>
+                            <p class="news-excerpt">Ученик 10 "А" класса Алексей Петров занял первое место в городской олимпиаде по математике среди учащихся 10-11 классов...</p>
+                            <div class="news-footer">
+                                <a href="news-single1.html" class="read-more">Читать далее</a>
+                                <div class="news-tags">
+                                    <span class="news-tag">олимпиада</span>
+                                    <span class="news-tag">математика</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Новость 2 -->
+                    <article class="news-card" data-category="events" data-date="2023-12-12">
+                        <div class="news-image">
+                            <div class="image-placeholder">Фото</div>
+                            <span class="news-category-badge events">Мероприятия</span>
+                        </div>
+                        <div class="news-content">
+                            <div class="news-meta">
+                                <span class="news-date">12 декабря 2023</span>
+                                <span class="news-views">📊 189</span>
+                            </div>
+                            <h3 class="news-title">Новогодний бал старшеклассников</h3>
+                            <p class="news-excerpt">В гимназии состоялся традиционный новогодний бал для учащихся 9-11 классов. Ученики подготовили интересную программу...</p>
+                            <div class="news-footer">
+                                <a href="news-single2.html" class="read-more">Читать далее</a>
+                                <div class="news-tags">
+                                    <span class="news-tag">новый год</span>
+                                    <span class="news-tag">мероприятие</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Новость 3 -->
+                    <article class="news-card" data-category="olympiads" data-date="2023-12-10">
+                        <div class="news-image">
+                            <div class="image-placeholder">Фото</div>
+                            <span class="news-category-badge olympiads">Олимпиады</span>
+                        </div>
+                        <div class="news-content">
+                            <div class="news-meta">
+                                <span class="news-date">10 декабря 2023</span>
+                                <span class="news-views">📊 156</span>
+                            </div>
+                            <h3 class="news-title">Результаты всероссийской олимпиады по физике</h3>
+                            <p class="news-excerpt">Подведены итоги муниципального этапа всероссийской олимпиады школьников по физике. Наши ученики показали отличные результаты...</p>
+                            <div class="news-footer">
+                                <a href="news-single3.html" class="read-more">Читать далее</a>
+                                <div class="news-tags">
+                                    <span class="news-tag">физика</span>
+                                    <span class="news-tag">олимпиада</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Новость 4 -->
+                    <article class="news-card" data-category="sports" data-date="2023-12-08">
+                        <div class="news-image">
+                            <div class="image-placeholder">Фото</div>
+                            <span class="news-category-badge sports">Спорт</span>
+                        </div>
+                        <div class="news-content">
+                            <div class="news-meta">
+                                <span class="news-date">8 декабря 2023</span>
+                                <span class="news-views">📊 203</span>
+                            </div>
+                            <h3 class="news-title">Победа в районных соревнованиях по баскетболу</h3>
+                            <p class="news-excerpt">Команда юношей нашей гимназии заняла первое место в районных соревнованиях по баскетболу. Поздравляем наших спортсменов!</p>
+                            <div class="news-footer">
+                                <a href="news-single4.html" class="read-more">Читать далее</a>
+                                <div class="news-tags">
+                                    <span class="news-tag">баскетбол</span>
+                                    <span class="news-tag">спорт</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Новость 5 -->
+                    <article class="news-card" data-category="announcements" data-date="2023-12-05">
+                        <div class="news-image">
+                            <div class="image-placeholder">Фото</div>
+                            <span class="news-category-badge announcements">Объявления</span>
+                        </div>
+                        <div class="news-content">
+                            <div class="news-meta">
+                                <span class="news-date">5 декабря 2023</span>
+                                <span class="news-views">📊 278</span>
+                            </div>
+                            <h3 class="news-title">Изменения в расписании на следующую неделю</h3>
+                            <p class="news-excerpt">Уважаемые ученики и родители! Сообщаем об изменениях в расписании занятий на следующую неделю в связи с проведением...</p>
+                            <div class="news-footer">
+                                <a href="news-single5.html" class="read-more">Читать далее</a>
+                                <div class="news-tags">
+                                    <span class="news-tag">расписание</span>
+                                    <span class="news-tag">объявление</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Новость 6 -->
+                    <article class="news-card" data-category="events" data-date="2023-12-03">
+                        <div class="news-image">
+                            <div class="image-placeholder">Фото</div>
+                            <span class="news-category-badge events">Мероприятия</span>
+                        </div>
+                        <div class="news-content">
+                            <div class="news-meta">
+                                <span class="news-date">3 декабря 2023</span>
+                                <span class="news-views">📊 167</span>
+                            </div>
+                            <h3 class="news-title">Научная конференция "Шаг в будущее"</h3>
+                            <p class="news-excerpt">В гимназии прошла ежегодная научная конференция "Шаг в будущее". Ученики представили интересные исследовательские проекты...</p>
+                            <div class="news-footer">
+                                <a href="news-single6.html" class="read-more">Читать далее</a>
+                                <div class="news-tags">
+                                    <span class="news-tag">наука</span>
+                                    <span class="news-tag">конференция</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Пагинация -->
+                <div class="pagination">
+                    <button class="pagination-btn active">1</button>
+                    <button class="pagination-btn">2</button>
+                    <button class="pagination-btn">3</button>
+                    <span class="pagination-ellipsis">...</span>
+                    <button class="pagination-btn">10</button>
+                    <button class="pagination-btn next">Следующая →</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Подвал -->
+    <footer class="school-footer">
+        <div class="footer-container">
+            <div class="footer-info">
+                <p>&copy; 2023 Ховринская Гимназия "Лампада". Все права защищены.</p>
+                <p>Телефон: +7 (495) 123-45-67 | Email: info@lampada-gymnasium.ru</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function handleLogin() {
+            document.getElementById('userView').style.display = 'block';
+            document.querySelector('.login-form').style.display = 'none';
+            document.getElementById('userGreeting').textContent = 'Добро пожаловать!';
+        }
+
+        function handleLogout() {
+            document.getElementById('userView').style.display = 'none';
+            document.querySelector('.login-form').style.display = 'flex';
+        }
+
+        // Фильтрация новостей по категориям
+        document.querySelectorAll('.news-category').forEach(category => {
+            category.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                // Убираем активный класс у всех категорий
+                document.querySelectorAll('.news-category').forEach(cat => {
+                    cat.classList.remove('active');
+                });
+
+                // Добавляем активный класс текущей категории
+                this.classList.add('active');
+
+                const selectedCategory = this.getAttribute('data-category');
+                filterNewsByCategory(selectedCategory);
+            });
+        });
+
+        function filterNewsByCategory(category) {
+            const newsCards = document.querySelectorAll('.news-card');
+
+            newsCards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Поиск новостей
+        document.getElementById('newsSearch').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const newsCards = document.querySelectorAll('.news-card');
+
+            newsCards.forEach(card => {
+                const title = card.querySelector('.news-title').textContent.toLowerCase();
+                const excerpt = card.querySelector('.news-excerpt').textContent.toLowerCase();
+
+                if (title.includes(searchTerm) || excerpt.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+
+        // Сортировка новостей
+        document.getElementById('sortNews').addEventListener('change', function() {
+            const sortBy = this.value;
+            sortNews(sortBy);
+        });
+
+        function sortNews(sortBy) {
+            const newsGrid = document.querySelector('.news-grid');
+            const newsCards = Array.from(document.querySelectorAll('.news-card'));
+
+            newsCards.sort((a, b) => {
+                if (sortBy === 'newest') {
+                    return new Date(b.getAttribute('data-date')) - new Date(a.getAttribute('data-date'));
+                } else if (sortBy === 'oldest') {
+                    return new Date(a.getAttribute('data-date')) - new Date(b.getAttribute('data-date'));
+                } else if (sortBy === 'popular') {
+                    const viewsA = parseInt(a.querySelector('.news-views').textContent);
+                    const viewsB = parseInt(b.querySelector('.news-views').textContent);
+                    return viewsB - viewsA;
+                }
+            });
+
+            // Очищаем и перезаполняем сетку
+            newsGrid.innerHTML = '';
+            newsCards.forEach(card => newsGrid.appendChild(card));
+        }
+
+        // Плавная прокрутка
+        document.querySelectorAll('.sidebar-links a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

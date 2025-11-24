@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Основная образовательная программа - Лампадка</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="https://lampada-obr.ru/images/demo/logo.png" alt="Логотип">
+        </div>
+        <div class="site-name">Ховринская Гимназия "Лампадка"</div>
+        <div class="login-form">
+            <input type="text" placeholder="Логин">
+            <input type="password" placeholder="Пароль">
+            <button>Войти</button>
+        </div>
+    </header>
+
+    <nav class="nav-bar">
+        <a href="index.html">Главная</a>
+        <a href="program.html">Образовательная программа</a>
+        <a href="teachers.html">Каталог преподавателей</a>
+        <a href="contacts.html">Контакты</a>
+    </nav>
+
+    <div class="content">
+        <div class="sidebar">
+            <a href="index.html">Главная</a>
+            <a href="program.html">Образовательная программа</a>
+            <a href="english.html">Английский язык</a>
+            <a href="auth.html" id="sidebarAuthLink">Личный кабинет</a>
+        </div>
+
+        <div class="main-content">
+            <!-- Название товара -->
+            <h1>Основная образовательная программа 1-4 классы</h1>
+
+            <!-- Заголовок «Описание товара» -->
+            <h2>Описание программы</h2>
+
+            <!-- Картинка товара -->
+            <div class="text-with-image">
+                <img src="https://lampada-obr.ru/images/s1/gimnazia01.jpg" alt="Учебный процесс" class="content-image">
+
+                <!-- Текст краткого описания товара -->
+                <p>Комплексная программа начального общего образования, сочетающая государственные стандарты ФГОС с православным воспитанием и углубленным изучением ключевых предметов.</p>
+            </div>
+
+            <!-- Заголовок «Характеристики товара» -->
+            <h2>Характеристики программы</h2>
+
+            <!-- Текст характеристик товара -->
+            <div class="product-features">
+                <ul class="square-list">
+                    <li><strong>Возраст:</strong> 6.5-11 лет</li>
+                    <li><strong>Срок обучения:</strong> 4 года</li>
+                    <li><strong>Форма обучения:</strong> очная</li>
+                    <li><strong>Количество учащихся в классе:</strong> до 15 человек</li>
+                    <li><strong>Режим дня:</strong> 8:30-18:00</li>
+                    <li><strong>Питание:</strong> 4-разовое</li>
+                </ul>
+            </div>
+
+            <!-- Дополнительный подраздел - Особенности программы -->
+            <h2>Особенности программы</h2>
+            <div class="product-special">
+                <ul class="circle-list">
+                    <li>Углубленное изучение математики и русского языка</li>
+                    <li>Ежедневные уроки английского языка</li>
+                    <li>Основы православной веры и церковнославянский язык</li>
+                    <li>Проектная и исследовательская деятельность</li>
+                    <li>Интегрированные уроки искусства и музыки</li>
+                </ul>
+            </div>
+
+            <!-- Заголовок «Подробное описание товара» -->
+            <h2>Подробное описание программы</h2>
+
+            <!-- Текст подробного описания товара -->
+            <div class="product-details">
+                <p>Наша образовательная программа построена на принципах целостного развития личности ребенка. Мы сочетаем академическую строгость с творческим подходом к обучению.</p>
+
+                <p>Учебный день начинается с молитвы и включает в себя не только основные предметы, но и развивающие занятия, прогулки на свежем воздухе, выполнение домашних заданий под руководством педагогов.</p>
+
+                <p>Особое внимание уделяется формированию морально-нравственных качеств, воспитанию уважения к традициям и развития чувства ответственности.</p>
+            </div>
+
+            <!-- Горизонтальная черта -->
+            <hr>
+
+            <!-- Текст «Все права защищены» -->
+            <p class="copyright">Все права защищены</p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Лампадка. Все права защищены.</p>
+        </div>
+    </footer>
+<script>
+    // Простая проверка авторизации для навигации
+    document.addEventListener('DOMContentLoaded', function() {
+        const user = localStorage.getItem('user');
+        const authLinks = document.querySelectorAll('a[href="auth.html"]');
+
+        if (user) {
+            authLinks.forEach(link => {
+                link.href = 'profile.html';
+                link.textContent = 'Личный кабинет';
+            });
+        }
+    });
+</script>
+<script src="header-auth.js"></script>
+</body>
+</html>

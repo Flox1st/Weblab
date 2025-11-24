@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты - Лампадка</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="https://lampada-obr.ru/images/demo/logo.png" alt="Логотип">
+        </div>
+        <div class="site-name">Ховринская Гимназия "Лампадка"</div>
+        <div class="login-form" id="headerLoginForm">
+            <div id="guestView">
+                <input type="text" placeholder="Логин" id="headerLogin">
+                <input type="password" placeholder="Пароль" id="headerPassword">
+                <button onclick="headerLogin()">Войти</button>
+            </div>
+            <div id="userView" style="display: none;">
+                <span id="userGreeting" style="color: black; font-weight: bold;"></span>
+                <button onclick="headerLogout()" style="margin-left: 10px; padding: 3px 8px;">Выйти</button>
+            </div>
+        </div>
+    </header>
+
+    <nav class="nav-bar">
+        <a href="index.html">Главная</a>
+        <a href="program.html">Образовательная программа</a>
+        <a href="teachers.html">Каталог преподавателей</a>
+        <a href="contacts.html">Контакты</a>
+    </nav>
+
+    <div class="simple-contact-page">
+        <h1>Контакты</h1>
+        <hr>
+
+        <!-- Форма обратной связи -->
+        <div class="contact-section">
+            <h2>Напишите нам</h2>
+            <form class="contact-form" onsubmit="handleContactForm(event)">
+                <div>
+                    <label>Имя *</label>
+                    <input type="text" required>
+                </div>
+
+                <div>
+                    <label>Email *</label>
+                    <input type="email" required>
+                </div>
+
+                <div>
+                    <label>Телефон</label>
+                    <input type="tel" placeholder="+7 (XXX) XXX-XX-XX">
+                </div>
+
+                <div>
+                    <label>Тема *</label>
+                    <select required>
+                        <option value="">Выберите тему</option>
+                        <option value="admission">Поступление в гимназию</option>
+                        <option value="questions">Вопросы по учебному процессу</option>
+                        <option value="other">Другое</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label>Сообщение *</label>
+                    <textarea required placeholder="Опишите ваш вопрос..."></textarea>
+                </div>
+
+                <button type="submit" class="contact-btn">Отправить сообщение</button>
+            </form>
+        </div>
+
+        <hr>
+
+        <!-- Контактная информация -->
+        <div class="contact-section">
+            <h2>Адрес</h2>
+            <div class="contact-info">
+                <div class="info-block">
+                    <h3>📞 Телефоны</h3>
+                    <p>+7 (495) 123-45-67</p>
+                    <p>+7 (495) 123-45-68</p>
+                </div>
+
+                <div class="info-block">
+                    <h3>📍 Адрес</h3>
+                    <p>г. Москва, Ховрино</p>
+                    <p>ул. Фестивальная, д. 12А</p>
+                    <p>🚇 Метро "Речной вокзал"</p>
+                </div>
+
+                <div class="info-block">
+                    <h3>✉️ Email</h3>
+                    <p>info@lampada.ru</p>
+                    <p>admission@lampada.ru</p>
+                </div>
+
+                <div class="info-block">
+                    <h3>🕒 Режим работы</h3>
+                    <p>Пн-Пт: 8:00 - 19:00</p>
+                    <p>Сб: 9:00 - 16:00</p>
+                    <p>Вс: выходной</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Карта -->
+        <div class="contact-section">
+            <h2>Мы на карте</h2>
+            <div class="map-container">
+                <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A3f98f36f46658db31a5c44c15d5eec204f974d873a9ff17a48b34eb72a974431&amp;width=100%&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Лампадка. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Простая обработка формы
+        function handleContactForm(event) {
+            event.preventDefault();
+            alert('Спасибо! Ваше сообщение отправлено. Мы свяжемся с вами в ближайшее время.');
+            event.target.reset();
+        }
+    </script>
+
+    <script src="header-auth.js"></script>
+</body>
+</html>
