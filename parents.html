@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Родителям - Ховринская Гимназия "Лампада"</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header class="school-header">
+        <div class="header-container">
+            <div class="logo-section">
+                <div class="school-logo">
+                    <div class="logo-placeholder">Л</div>
+                </div>
+                <div class="school-titles">
+                    <h1 class="school-name">Ховринская Гимназия "Лампада"</h1>
+                    <p class="school-motto">Знание - свет, а незнание - тьма</p>
+                </div>
+            </div>
+            
+            <div class="auth-section">
+                <div class="login-form">
+                    <input type="text" placeholder="Логин" id="loginInput">
+                    <input type="password" placeholder="Пароль" id="passwordInput">
+                    <button onclick="handleLogin()">Войти</button>
+                </div>
+                <div class="user-view" id="userView" style="display: none;">
+                    <span id="userGreeting"></span>
+                    <button onclick="handleLogout()">Выйти</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Основная навигация -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-link">Главная</a>
+            <a href="about.html" class="nav-link">О гимназии</a>
+            <a href="teachers.html" class="nav-link">Преподаватели</a>
+            <a href="schedule.html" class="nav-link">Расписание</a>
+            <a href="news.html" class="nav-link">Новости</a>
+            <a href="students.html" class="nav-link">Ученикам</a>
+            <a href="parents.html" class="nav-link active">Родителям</a>
+            <a href="contacts.html" class="nav-link">Контакты</a>
+        </div>
+    </nav>
+
+    <!-- Основной контент -->
+    <div class="main-container">
+        <!-- Боковая панель -->
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3>Для родителей</h3>
+                <ul class="sidebar-links">
+                    <li><a href="#meetings">Родительские собрания</a></li>
+                    <li><a href="#documents">Документы и платежи</a></li>
+                    <li><a href="#psychology">Психологическая поддержка</a></li>
+                    <li><a href="#nutrition">Питание</a></li>
+                    <li><a href="#extracurricular">Внеурочная деятельность</a></li>
+                    <li><a href="#faq">Часто задаваемые вопросы</a></li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3>Экстренные контакты</h3>
+                <div class="emergency-contacts">
+                    <div class="contact-item">
+                        <strong>Дежурный администратор</strong>
+                        <span>+7 (495) 123-45-67 (доб. 101)</span>
+                    </div>
+                    <div class="contact-item">
+                        <strong>Медицинский кабинет</strong>
+                        <span>+7 (495) 123-45-67 (доб. 103)</span>
+                    </div>
+                    <div class="contact-item">
+                        <strong>Психолог</strong>
+                        <span>+7 (495) 123-45-67 (доб. 105)</span>
+                    </div>
+                    <div class="contact-item">
+                        <strong>Учебная часть</strong>
+                        <span>+7 (495) 123-45-67 (доб. 102)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>Ближайшие события</h3>
+                <div class="parent-events">
+                    <div class="event-item important">
+                        <span class="event-date">20.12</span>
+                        <span class="event-title">Общешкольное родительское собрание</span>
+                    </div>
+                    <div class="event-item">
+                        <span class="event-date">22.12</span>
+                        <span class="event-title">Новогодний утренник (1-4 классы)</span>
+                    </div>
+                    <div class="event-item">
+                        <span class="event-date">25.12</span>
+                        <span class="event-title">Концерт для родителей</span>
+                    </div>
+                    <div class="event-item">
+                        <span class="event-date">28.12</span>
+                        <span class="event-title">Завершение второй четверти</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Основная content area -->
+        <main class="content-area">
+            <section class="page-header">
+                <h1>Родителям</h1>
+                <p class="page-subtitle">Вся необходимая информация для родителей учащихся</p>
+            </section>
+
+            <!-- Важная информация -->
+            <section class="parents-section important-info">
+                <h2>💡 Важная информация</h2>
+                <div class="info-cards">
+                    <div class="info-card urgent">
+                        <h3>📅 Родительское собрание</h3>
+                        <p><strong>Дата:</strong> 20 декабря 2023 года</p>
+                        <p><strong>Время:</strong> 18:00</p>
+                        <p><strong>Место:</strong> Актовый зал гимназии</p>
+                        <p>Обсуждение итогов второй четверти и подготовка к новогодним праздникам.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>📚 Подготовка к экзаменам</h3>
+                        <p>Началась интенсивная подготовка к ОГЭ и ЕГЭ. График консультаций доступен в электронном дневнике.</p>
+                        <a href="#" class="info-link">Подробнее о подготовке →</a>
+                    </div>
+                    <div class="info-card">
+                        <h3>🏥 Медицинский осмотр</h3>
+                        <p>С 15 по 20 декабря пройдет плановый медицинский осмотр учащихся 1-11 классов.</p>
+                        <a href="#" class="info-link">График осмотров →</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Родительские собрания -->
+            <section id="meetings" class="parents-section">
+                <h2>👥 Родительские собрания</h2>
+                <div class="meetings-schedule">
+                    <div class="meeting-item">
+                        <div class="meeting-header">
+                            <h3>Общешкольное собрание</h3>
+                            <span class="meeting-date">20.12.2023</span>
+                        </div>
+                        <div class="meeting-details">
+                            <p><strong>Время:</strong> 18:00 - 19:30</p>
+                            <p><strong>Место:</strong> Актовый зал</p>
+                            <p><strong>Темы:</strong></p>
+                            <ul>
+                                <li>Итоги второй четверти</li>
+                                <li>Подготовка к новогодним мероприятиям</li>
+                                <li>Безопасность во время каникул</li>
+                                <li>Планы на третью четверть</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="meeting-item">
+                        <div class="meeting-header">
+                            <h3>Собрание для родителей 9 классов</h3>
+                            <span class="meeting-date">15.01.2024</span>
+                        </div>
+                        <div class="meeting-details">
+                            <p><strong>Время:</strong> 17:30 - 19:00</p>
+                            <p><strong>Место:</strong> Актовый зал</p>
+                            <p><strong>Темы:</strong></p>
+                            <ul>
+                                <li>Подготовка к ОГЭ</li>
+                                <li>Выбор предметов для экзаменов</li>
+                                <li>Профориентационные мероприятия</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="meeting-item">
+                        <div class="meeting-header">
+                            <h3>Собрание для родителей 11 классов</h3>
+                            <span class="meeting-date">18.01.2024</span>
+                        </div>
+                        <div class="meeting-details">
+                            <p><strong>Время:</strong> 17:30 - 19:00</p>
+                            <p><strong>Место:</strong> Актовый зал</p>
+                            <p><strong>Темы:</strong></p>
+                            <ul>
+                                <li>Подготовка к ЕГЭ</li>
+                                <li>Порядок подачи документов в вузы</li>
+                                <li>Итоговое сочинение</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Документы и платежи -->
+            <section id="documents" class="parents-section">
+                <h2>📄 Документы и платежи</h2>
+                <div class="documents-payments">
+                    <div class="documents-list">
+                        <h3>Необходимые документы</h3>
+                        <div class="document-item">
+                            <h4>Заявление на прием</h4>
+                            <p>Бланк заявления для приема ребенка в гимназию</p>
+                            <a href="#" class="download-btn">Скачать PDF</a>
+                        </div>
+                        <div class="document-item">
+                            <h4>Согласие на обработку данных</h4>
+                            <p>Форма согласия на обработку персональных данных</p>
+                            <a href="#" class="download-btn">Скачать PDF</a>
+                        </div>
+                        <div class="document-item">
+                            <h4>Договор на образовательные услуги</h4>
+                            <p>Типовой договор на оказание образовательных услуг</p>
+                            <a href="#" class="download-btn">Скачать PDF</a>
+                        </div>
+                    </div>
+
+                    <div class="payments-info">
+                        <h3>💳 Платежи и взносы</h3>
+                        <div class="payment-card">
+                            <h4>Добровольные пожертвования</h4>
+                            <p><strong>Назначение:</strong> Развитие материально-технической базы гимназии</p>
+                            <p><strong>Реквизиты:</strong> Уточняйте у классного руководителя</p>
+                            <p><strong>Примечание:</strong> Все взносы строго добровольные</p>
+                        </div>
+                        <div class="payment-card">
+                            <h4>Питание в столовой</h4>
+                            <p><strong>Стоимость завтрака:</strong> 150 рублей</p>
+                            <p><strong>Стоимость обеда:</strong> 250 рублей</p>
+                            <p><strong>Оплата:</strong> Через систему "Проход и питание"</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Психологическая поддержка -->
+            <section id="psychology" class="parents-section">
+                <h2>🧠 Психологическая поддержка</h2>
+                <div class="psychology-content">
+                    <div class="psychologist-info">
+                        <h3>Школьный психолог</h3>
+                        <div class="psychologist-card">
+                            <div class="psychologist-photo">
+                                <div class="photo-placeholder">ЕК</div>
+                            </div>
+                            <div class="psychologist-details">
+                                <h4>Елена Викторовна Ковалева</h4>
+                                <p><strong>Образование:</strong> МГУ, факультет психологии</p>
+                                <p><strong>Стаж:</strong> 12 лет</p>
+                                <p><strong>Консультации:</strong> Пн-Пт, 9:00-16:00</p>
+                                <p><strong>Кабинет:</strong> 201 (2 этаж)</p>
+                                <p><strong>Телефон:</strong> +7 (495) 123-45-67 (доб. 105)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="psychology-services">
+                        <h3>Услуги психолога</h3>
+                        <div class="services-grid">
+                            <div class="service-item">
+                                <h4>Индивидуальные консультации</h4>
+                                <p>Помощь в решении личных проблем, трудностей в обучении, профориентация</p>
+                            </div>
+                            <div class="service-item">
+                                <h4>Групповые занятия</h4>
+                                <p>Тренинги по развитию коммуникативных навыков, стрессоустойчивости</p>
+                            </div>
+                            <div class="service-item">
+                                <h4>Работа с родителями</h4>
+                                <p>Консультации по вопросам воспитания, детско-родительских отношений</p>
+                            </div>
+                            <div class="service-item">
+                                <h4>Экстренная помощь</h4>
+                                <p>Психологическая поддержка в сложных ситуациях</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Часто задаваемые вопросы -->
+            <section id="faq" class="parents-section">
+                <h2>❓ Часто задаваемые вопросы</h2>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>Как получить доступ к электронному дневнику?</h4>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Для получения доступа к электронному дневнику необходимо обратиться к классному руководителю. Вам будет выдан логин и пароль для входа в систему. Также доступ можно получить через портал mos.ru.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>Каков режим работы гимназии?</h4>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Гимназия работает с 8:00 до 20:00. Учебные занятия проходят с 8:30 до 15:00. После 15:00 работают кружки, секции и проводятся дополнительные занятия.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>Как организовано питание в гимназии?</h4>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Питание организовано через систему "Проход и питание". Родители могут пополнять лицевой счет ребенка и контролировать его питание через мобильное приложение или личный кабинет на портале mos.ru.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>Что делать, если ребенок заболел?</h4>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>При болезни ребенка необходимо:</p>
+                            <ol>
+                                <li>Сообщить классному руководителю по телефону</li>
+                                <li>Предоставить медицинскую справку после выздоровления</li>
+                                <li>Уточнить домашние задания через электронный дневник</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>Как записаться на консультацию к психологу?</h4>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Запись на консультацию к психологу осуществляется через классного руководителя или по телефону психологической службы: +7 (495) 123-45-67 (доб. 105). Консультации проводятся по предварительной записи.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Подвал -->
+    <footer class="school-footer">
+        <div class="footer-container">
+            <div class="footer-info">
+                <p>&copy; 2023 Ховринская Гимназия "Лампада". Все права защищены.</p>
+                <p>Телефон: +7 (495) 123-45-67 | Email: info@lampada-gymnasium.ru</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function handleLogin() {
+            document.getElementById('userView').style.display = 'block';
+            document.querySelector('.login-form').style.display = 'none';
+            document.getElementById('userGreeting').textContent = 'Добро пожаловать!';
+        }
+
+        function handleLogout() {
+            document.getElementById('userView').style.display = 'none';
+            document.querySelector('.login-form').style.display = 'flex';
+        }
+
+        // FAQ аккордеон
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+                const toggle = this.querySelector('.faq-toggle');
+                
+                // Закрываем все открытые ответы
+                document.querySelectorAll('.faq-answer').forEach(item => {
+                    if (item !== answer) {
+                        item.style.display = 'none';
+                        item.previousElementSibling.querySelector('.faq-toggle').textContent = '+';
+                    }
+                });
+                
+                // Переключаем текущий ответ
+                if (answer.style.display === 'block') {
+                    answer.style.display = 'none';
+                    toggle.textContent = '+';
+                } else {
+                    answer.style.display = 'block';
+                    toggle.textContent = '−';
+                }
+            });
+        });
+
+        // Плавная прокрутка
+        document.querySelectorAll('.sidebar-links a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

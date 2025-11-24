@@ -3,135 +3,369 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Контакты - Лампадка</title>
+    <title>Контакты - Ховринская Гимназия "Лампада"</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <img src="https://lampada-obr.ru/images/demo/logo.png" alt="Логотип">
-        </div>
-        <div class="site-name">Ховринская Гимназия "Лампадка"</div>
-        <div class="login-form" id="headerLoginForm">
-            <div id="guestView">
-                <input type="text" placeholder="Логин" id="headerLogin">
-                <input type="password" placeholder="Пароль" id="headerPassword">
-                <button onclick="headerLogin()">Войти</button>
+    <!-- Шапка сайта -->
+    <header class="school-header">
+        <div class="header-container">
+            <div class="logo-section">
+                <div class="school-logo">
+                    <div class="logo-placeholder">Л</div>
+                </div>
+                <div class="school-titles">
+                    <h1 class="school-name">Ховринская Гимназия "Лампада"</h1>
+                    <p class="school-motto">Знание - свет, а незнание - тьма</p>
+                </div>
             </div>
-            <div id="userView" style="display: none;">
-                <span id="userGreeting" style="color: black; font-weight: bold;"></span>
-                <button onclick="headerLogout()" style="margin-left: 10px; padding: 3px 8px;">Выйти</button>
+            
+            <div class="auth-section">
+                <div class="login-form">
+                    <input type="text" placeholder="Логин" id="loginInput">
+                    <input type="password" placeholder="Пароль" id="passwordInput">
+                    <button onclick="handleLogin()">Войти</button>
+                </div>
+                <div class="user-view" id="userView" style="display: none;">
+                    <span id="userGreeting"></span>
+                    <button onclick="handleLogout()">Выйти</button>
+                </div>
             </div>
         </div>
     </header>
 
-    <nav class="nav-bar">
-        <a href="index.html">Главная</a>
-        <a href="program.html">Образовательная программа</a>
-        <a href="teachers.html">Каталог преподавателей</a>
-        <a href="contacts.html">Контакты</a>
+    <!-- Основная навигация -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-link">Главная</a>
+            <a href="about.html" class="nav-link">О гимназии</a>
+            <a href="teachers.html" class="nav-link">Преподаватели</a>
+            <a href="schedule.html" class="nav-link">Расписание</a>
+            <a href="news.html" class="nav-link">Новости</a>
+            <a href="students.html" class="nav-link">Ученикам</a>
+            <a href="parents.html" class="nav-link">Родителям</a>
+            <a href="contacts.html" class="nav-link active">Контакты</a>
+        </div>
     </nav>
 
-    <div class="simple-contact-page">
-        <h1>Контакты</h1>
-        <hr>
-
-        <!-- Форма обратной связи -->
-        <div class="contact-section">
-            <h2>Напишите нам</h2>
-            <form class="contact-form" onsubmit="handleContactForm(event)">
-                <div>
-                    <label>Имя *</label>
-                    <input type="text" required>
-                </div>
-
-                <div>
-                    <label>Email *</label>
-                    <input type="email" required>
-                </div>
-
-                <div>
-                    <label>Телефон</label>
-                    <input type="tel" placeholder="+7 (XXX) XXX-XX-XX">
-                </div>
-
-                <div>
-                    <label>Тема *</label>
-                    <select required>
-                        <option value="">Выберите тему</option>
-                        <option value="admission">Поступление в гимназию</option>
-                        <option value="questions">Вопросы по учебному процессу</option>
-                        <option value="other">Другое</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label>Сообщение *</label>
-                    <textarea required placeholder="Опишите ваш вопрос..."></textarea>
-                </div>
-
-                <button type="submit" class="contact-btn">Отправить сообщение</button>
-            </form>
-        </div>
-
-        <hr>
-
-        <!-- Контактная информация -->
-        <div class="contact-section">
-            <h2>Адрес</h2>
-            <div class="contact-info">
-                <div class="info-block">
-                    <h3>📞 Телефоны</h3>
-                    <p>+7 (495) 123-45-67</p>
-                    <p>+7 (495) 123-45-68</p>
-                </div>
-
-                <div class="info-block">
-                    <h3>📍 Адрес</h3>
-                    <p>г. Москва, Ховрино</p>
-                    <p>ул. Фестивальная, д. 12А</p>
-                    <p>🚇 Метро "Речной вокзал"</p>
-                </div>
-
-                <div class="info-block">
-                    <h3>✉️ Email</h3>
-                    <p>info@lampada.ru</p>
-                    <p>admission@lampada.ru</p>
-                </div>
-
-                <div class="info-block">
-                    <h3>🕒 Режим работы</h3>
-                    <p>Пн-Пт: 8:00 - 19:00</p>
-                    <p>Сб: 9:00 - 16:00</p>
-                    <p>Вс: выходной</p>
+    <!-- Основной контент -->
+    <div class="main-container">
+        <!-- Боковая панель -->
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3>Быстрые контакты</h3>
+                <div class="quick-contacts">
+                    <div class="contact-card">
+                        <div class="contact-icon">📞</div>
+                        <div class="contact-info">
+                            <strong>Общий телефон</strong>
+                            <span>+7 (495) 123-45-67</span>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">📧</div>
+                        <div class="contact-info">
+                            <strong>Электронная почта</strong>
+                            <span>info@lampada.ru</span>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">🕒</div>
+                        <div class="contact-info">
+                            <strong>Часы работы</strong>
+                            <span>Пн-Пт: 8:00-20:00</span>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-info">
+                            <strong>Адрес</strong>
+                            <span>Москва, ул. Фестивальная, 123</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <!-- Карта -->
-        <div class="contact-section">
-            <h2>Мы на карте</h2>
-            <div class="map-container">
-                <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A3f98f36f46658db31a5c44c15d5eec204f974d873a9ff17a48b34eb72a974431&amp;width=100%&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script>
+            
+            <div class="sidebar-section">
+                <h3>Экстренные службы</h3>
+                <div class="emergency-services">
+                    <div class="service-item">
+                        <strong>Полиция</strong>
+                        <span>102</span>
+                    </div>
+                    <div class="service-item">
+                        <strong>Скорая помощь</strong>
+                        <span>103</span>
+                    </div>
+                    <div class="service-item">
+                        <strong>Пожарная служба</strong>
+                        <span>101</span>
+                    </div>
+                    <div class="service-item">
+                        <strong>Горячая линия МЧС</strong>
+                        <span>+7 (495) 637-22-22</span>
+                    </div>
+                </div>
             </div>
-        </div>
+
+            <div class="sidebar-section">
+                <h3>Социальные сети</h3>
+                <div class="social-links">
+                    <a href="#" class="social-link vk">
+                        <span class="social-icon">📘</span>
+                        <span>ВКонтакте</span>
+                    </a>
+                    <a href="#" class="social-link telegram">
+                        <span class="social-icon">📱</span>
+                        <span>Telegram</span>
+                    </a>
+                    <a href="#" class="social-link youtube">
+                        <span class="social-icon">🎬</span>
+                        <span>YouTube</span>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Основная content area -->
+        <main class="content-area">
+            <section class="page-header">
+                <h1>Контакты</h1>
+                <p class="page-subtitle">Свяжитесь с нами удобным для вас способом</p>
+            </section>
+
+            <!-- Основная контактная информация -->
+            <section class="contacts-section">
+                <h2>📞 Контактная информация</h2>
+                <div class="contact-grid">
+                    <div class="contact-info-card">
+                        <h3>📍 Адрес</h3>
+                        <div class="contact-details">
+                            <p><strong>Юридический адрес:</strong><br>125363, Москва, ул. Фестивальная, дом 123</p>
+                            <p><strong>Фактический адрес:</strong><br>125363, Москва, ул. Фестивальная, дом 123</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-info-card">
+                        <h3>📞 Телефоны</h3>
+                        <div class="contact-details">
+                            <p><strong>Приемная директора:</strong><br>+7 (495) 123-45-67 (доб. 100)</p>
+                            <p><strong>Учебная часть:</strong><br>+7 (495) 123-45-67 (доб. 102)</p>
+                            <p><strong>Бухгалтерия:</strong><br>+7 (495) 123-45-67 (доб. 104)</p>
+                            <p><strong>Медицинский кабинет:</strong><br>+7 (495) 123-45-67 (доб. 103)</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-info-card">
+                        <h3>📧 Электронная почта</h3>
+                        <div class="contact-details">
+                            <p><strong>Общие вопросы:</strong><br>info@lampada-gymnasium.ru</p>
+                            <p><strong>Директор:</strong><br>director@lampada-gymnasium.ru</p>
+                            <p><strong>Учебная часть:</strong><br>education@lampada-gymnasium.ru</p>
+                            <p><strong>Приемная комиссия:</strong><br>admission@lampada-gymnasium.ru</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-info-card">
+                        <h3>🕒 Режим работы</h3>
+                        <div class="contact-details">
+                            <p><strong>Понедельник-Пятница:</strong><br>8:00 - 20:00</p>
+                            <p><strong>Суббота:</strong><br>9:00 - 16:00</p>
+                            <p><strong>Воскресенье:</strong><br>Выходной</p>
+                            <p><strong>Прием посетителей:</strong><br>9:00 - 18:00</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Карта -->
+            <section class="contacts-section">
+                <h2>🗺️ Как нас найти</h2>
+                <div class="map-container-large">
+                    <div class="map-wrapper">
+                        <script type="text/javascript" charset="utf-8" async 
+                            <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A3f98f36f46658db31a5c44c15d5eec204f974d873a9ff17a48b34eb72a974431&amp;width=1200&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script>
+                    </div>
+                </div>
+                
+                <div class="transport-info">
+                    <h3>🚍 Транспорт</h3>
+                    <div class="transport-grid">
+                        <div class="transport-item">
+                            <h4>🚇 Метро</h4>
+                            <p>Станция "Речной вокзал" (Замоскворецкая линия)<br>Пешком 15 минут</p>
+                        </div>
+                        <div class="transport-item">
+                            <h4>🚌 Автобусы</h4>
+                            <p>№ 188, 233, 284, 745<br>Остановка "Улица Фестивальная"</p>
+                        </div>
+                        <div class="transport-item">
+                            <h4>🚎 Троллейбусы</h4>
+                            <p>№ 58, 59<br>Остановка "Гимназия Лампада"</p>
+                        </div>
+                        <div class="transport-item">
+                            <h4>🚗 Автомобиль</h4>
+                            <p>Бесплатная парковка на 50 мест<br>Со стороны ул. Лавочкина</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Форма обратной связи -->
+            <section class="contacts-section">
+                <h2>✉️ Обратная связь</h2>
+                <div class="feedback-form">
+                    <form id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Ваше имя *</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Электронная почта *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Телефон</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Тема обращения *</label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Выберите тему</option>
+                                <option value="admission">Прием в гимназию</option>
+                                <option value="education">Учебный процесс</option>
+                                <option value="schedule">Расписание</option>
+                                <option value="payment">Оплата и документы</option>
+                                <option value="other">Другое</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Сообщение *</label>
+                            <textarea id="message" name="message" rows="6" required placeholder="Опишите ваш вопрос подробно..."></textarea>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="submit-btn">Отправить сообщение</button>
+                            <p class="form-note">* Поля, отмеченные звездочкой, обязательны для заполнения</p>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Отделы и сотрудники -->
+            <section class="contacts-section">
+                <h2>👥 Ключевые сотрудники</h2>
+                <div class="staff-grid">
+                    <div class="staff-card">
+                        <div class="staff-photo">
+                            <div class="photo-placeholder">ИО</div>
+                        </div>
+                        <div class="staff-info">
+                            <h4>Иванова Ольга Сергеевна</h4>
+                            <p class="staff-position">Директор гимназии</p>
+                            <p class="staff-contacts">
+                                <strong>Телефон:</strong> +7 (495) 123-45-67 (доб. 100)<br>
+                                <strong>Email:</strong> director@lampada.ru<br>
+                                <strong>Прием:</strong> Вт, Чт 14:00-17:00
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="staff-card">
+                        <div class="staff-photo">
+                            <div class="photo-placeholder">ПС</div>
+                        </div>
+                        <div class="staff-info">
+                            <h4>Петров Сергей Владимирович</h4>
+                            <p class="staff-position">Завуч по учебной работе</p>
+                            <p class="staff-contacts">
+                                <strong>Телефон:</strong> +7 (495) 123-45-67 (доб. 102)<br>
+                                <strong>Email:</strong> zavuch@lampada.ru<br>
+                                <strong>Прием:</strong> Пн-Пт 10:00-13:00
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="staff-card">
+                        <div class="staff-photo">
+                            <div class="photo-placeholder">АМ</div>
+                        </div>
+                        <div class="staff-info">
+                            <h4>Александрова Мария Ивановна</h4>
+                            <p class="staff-position">Завуч по воспитательной работе</p>
+                            <p class="staff-contacts">
+                                <strong>Телефон:</strong> +7 (495) 123-45-67 (доб. 106)<br>
+                                <strong>Email:</strong> vospitanie@lampada.ru<br>
+                                <strong>Прием:</strong> Пн, Ср 15:00-18:00
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="staff-card">
+                        <div class="staff-photo">
+                            <div class="photo-placeholder">СК</div>
+                        </div>
+                        <div class="staff-info">
+                            <h4>Сидорова Ксения Андреевна</h4>
+                            <p class="staff-position">Секретарь учебной части</p>
+                            <p class="staff-contacts">
+                                <strong>Телефон:</strong> +7 (495) 123-45-67 (доб. 101)<br>
+                                <strong>Email:</strong> secretary@lampada.ru<br>
+                                <strong>Прием:</strong> Пн-Пт 9:00-18:00
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
     </div>
 
-    <footer>
-        <div class="footer-content">
-            <p>&copy; 2025 Лампадка. Все права защищены.</p>
+    <!-- Подвал -->
+    <footer class="school-footer">
+        <div class="footer-container">
+            <div class="footer-info">
+                <p>&copy; 2023 Ховринская Гимназия "Лампада". Все права защищены.</p>
+                <p>Телефон: +7 (495) 123-45-67 | Email: info@lampada-gymnasium.ru</p>
+            </div>
         </div>
     </footer>
 
     <script>
-        // Простая обработка формы
-        function handleContactForm(event) {
-            event.preventDefault();
-            alert('Спасибо! Ваше сообщение отправлено. Мы свяжемся с вами в ближайшее время.');
-            event.target.reset();
+        function handleLogin() {
+            document.getElementById('userView').style.display = 'block';
+            document.querySelector('.login-form').style.display = 'none';
+            document.getElementById('userGreeting').textContent = 'Добро пожаловать!';
         }
-    </script>
 
-    <script src="header-auth.js"></script>
+        function handleLogout() {
+            document.getElementById('userView').style.display = 'none';
+            document.querySelector('.login-form').style.display = 'flex';
+        }
+
+        // Обработка формы обратной связи
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Здесь должна быть логика отправки формы
+            const formData = new FormData(this);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            
+            // Временное сообщение об успехе
+            alert(`Спасибо, ${name}! Ваше сообщение отправлено. Мы свяжемся с вами по email: ${email}`);
+            this.reset();
+        });
+
+        // Маска для телефона
+        document.getElementById('phone').addEventListener('input', function(e) {
+            let x = e.target.value.replace(/\D/g, '').match(/(\d{0,1})(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/);
+            e.target.value = '+7' + (x[2] ? ' (' + x[2] : '') + (x[3] ? ') ' + x[3] : '') + (x[4] ? '-' + x[4] : '') + (x[5] ? '-' + x[5] : '');
+        });
+    </script>
 </body>
 </html>

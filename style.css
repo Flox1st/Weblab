@@ -1896,3 +1896,848 @@ body {
         gap: 5px;
     }
 }
+
+/* 
+ * Дополнительные стили для страницы "Родителям"
+ */
+
+/* Важная информация */
+.important-info {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
+    padding: 30px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+}
+
+.important-info h2 {
+    color: white;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.info-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.info-card {
+    background: rgba(255,255,255,0.1);
+    padding: 25px;
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.info-card.urgent {
+    border: 2px solid #f8d568;
+    background: rgba(248, 213, 104, 0.1);
+}
+
+.info-card h3 {
+    color: #f8d568;
+    margin-bottom: 15px;
+}
+
+.info-card p {
+    margin-bottom: 8px;
+    opacity: 0.9;
+}
+
+.info-card strong {
+    color: white;
+}
+
+.info-link {
+    display: inline-block;
+    margin-top: 10px;
+    color: #f8d568;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.info-link:hover {
+    text-decoration: underline;
+}
+
+/* Секции для родителей */
+.parents-section {
+    background: white;
+    padding: 30px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.parents-section h2 {
+    color: #1e3c72;
+    margin-bottom: 25px;
+    border-left: 4px solid #f8d568;
+    padding-left: 15px;
+}
+
+/* Родительские собрания */
+.meetings-schedule {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.meeting-item {
+    background: #f8f9fa;
+    padding: 25px;
+    border-radius: 8px;
+    border-left: 4px solid #1e3c72;
+    transition: transform 0.3s;
+}
+
+.meeting-item:hover {
+    transform: translateX(5px);
+    background: #f0f7ff;
+}
+
+.meeting-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.meeting-header h3 {
+    color: #1e3c72;
+    margin: 0;
+}
+
+.meeting-date {
+    background: #e53e3e;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+.meeting-details p {
+    margin-bottom: 8px;
+}
+
+.meeting-details ul {
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+.meeting-details li {
+    margin-bottom: 5px;
+    color: #555;
+}
+
+/* Документы и платежи */
+.documents-payments {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.documents-list h3,
+.payments-info h3 {
+    color: #1e3c72;
+    margin-bottom: 20px;
+}
+
+.document-item {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border-left: 3px solid #f8d568;
+}
+
+.document-item h4 {
+    color: #1e3c72;
+    margin-bottom: 8px;
+}
+
+.document-item p {
+    color: #666;
+    margin-bottom: 12px;
+    font-size: 0.9em;
+}
+
+.download-btn {
+    display: inline-block;
+    background: #1e3c72;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 0.9em;
+    transition: background 0.3s;
+}
+
+.download-btn:hover {
+    background: #2a5298;
+}
+
+.payment-card {
+    background: #f0f7ff;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #1e3c72;
+}
+
+.payment-card h4 {
+    color: #1e3c72;
+    margin-bottom: 12px;
+}
+
+.payment-card p {
+    margin-bottom: 8px;
+    font-size: 0.9em;
+}
+
+.payment-card strong {
+    color: #1e3c72;
+}
+
+/* Психологическая поддержка */
+.psychology-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.psychologist-card {
+    display: flex;
+    gap: 20px;
+    background: #f8f9fa;
+    padding: 25px;
+    border-radius: 8px;
+    border-left: 4px solid #1e3c72;
+}
+
+.psychologist-photo .photo-placeholder {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2em;
+    flex-shrink: 0;
+}
+
+.psychologist-details h4 {
+    color: #1e3c72;
+    margin-bottom: 10px;
+}
+
+.psychologist-details p {
+    margin-bottom: 5px;
+    font-size: 0.9em;
+    color: #555;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+
+.service-item {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 3px solid #f8d568;
+}
+
+.service-item h4 {
+    color: #1e3c72;
+    margin-bottom: 8px;
+}
+
+.service-item p {
+    color: #666;
+    font-size: 0.9em;
+    line-height: 1.4;
+}
+
+/* FAQ */
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.faq-item {
+    background: #f8f9fa;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.faq-question:hover {
+    background: #f0f7ff;
+}
+
+.faq-question h4 {
+    color: #1e3c72;
+    margin: 0;
+    flex: 1;
+}
+
+.faq-toggle {
+    background: #1e3c72;
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.faq-answer {
+    display: none;
+    padding: 0 20px 20px 20px;
+    color: #555;
+    line-height: 1.5;
+}
+
+.faq-answer p {
+    margin-bottom: 10px;
+}
+
+.faq-answer ol,
+.faq-answer ul {
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+.faq-answer li {
+    margin-bottom: 5px;
+}
+
+/* Экстренные контакты в сайдбаре */
+.emergency-contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.contact-item {
+    background: #fff5f5;
+    padding: 12px;
+    border-radius: 6px;
+    border-left: 3px solid #e53e3e;
+}
+
+.contact-item strong {
+    display: block;
+    color: #1e3c72;
+    margin-bottom: 5px;
+    font-size: 0.9em;
+}
+
+.contact-item span {
+    color: #e53e3e;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+/* События для родителей */
+.parent-events {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.event-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 6px;
+    transition: background 0.3s;
+}
+
+.event-item:hover {
+    background: #f8f9fa;
+}
+
+.event-item.important {
+    background: #fff5f5;
+    border-left: 3px solid #e53e3e;
+}
+
+.event-date {
+    background: #1e3c72;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 0.8em;
+    min-width: 40px;
+    text-align: center;
+}
+
+.event-title {
+    font-size: 0.9em;
+    color: #333;
+    flex: 1;
+}
+
+/* Адаптивность для parents.html */
+@media (max-width: 768px) {
+    .info-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .documents-payments {
+        grid-template-columns: 1fr;
+    }
+    
+    .psychology-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .psychologist-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .meeting-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .important-info {
+        padding: 20px;
+    }
+    
+    .parents-section {
+        padding: 20px;
+    }
+    
+    .faq-question {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .faq-toggle {
+        align-self: flex-end;
+    }
+}
+/* 
+ * Дополнительные стили для страницы "Контакты"
+ */
+
+/* Быстрые контакты в сайдбаре */
+.quick-contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.contact-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    transition: background 0.3s;
+}
+
+.contact-card:hover {
+    background: #f0f7ff;
+}
+
+.contact-icon {
+    font-size: 1.2em;
+    width: 30px;
+    text-align: center;
+}
+
+.contact-info {
+    flex: 1;
+}
+
+.contact-info strong {
+    display: block;
+    color: #1e3c72;
+    font-size: 0.9em;
+    margin-bottom: 4px;
+}
+
+.contact-info span {
+    color: #666;
+    font-size: 0.9em;
+}
+
+/* Экстренные службы */
+.emergency-services {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.service-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: #fff5f5;
+    border-radius: 6px;
+    border-left: 3px solid #e53e3e;
+}
+
+.service-item strong {
+    color: #1e3c72;
+    font-size: 0.9em;
+}
+
+.service-item span {
+    color: #e53e3e;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+/* Социальные сети */
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    background: #f8f9fa;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #333;
+    transition: all 0.3s;
+    border-left: 3px solid transparent;
+}
+
+.social-link:hover {
+    background: #f0f7ff;
+    transform: translateX(3px);
+}
+
+.social-link.vk:hover {
+    border-left-color: #4c75a3;
+}
+
+.social-link.telegram:hover {
+    border-left-color: #0088cc;
+}
+
+.social-link.youtube:hover {
+    border-left-color: #ff0000;
+}
+
+.social-icon {
+    font-size: 1.1em;
+}
+
+/* Секции контактов */
+.contacts-section {
+    background: white;
+    padding: 30px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.contacts-section h2 {
+    color: #1e3c72;
+    margin-bottom: 25px;
+    border-left: 4px solid #f8d568;
+    padding-left: 15px;
+}
+
+/* Контактная сетка */
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.contact-info-card {
+    background: #f8f9fa;
+    padding: 25px;
+    border-radius: 8px;
+    border-left: 4px solid #1e3c72;
+    transition: transform 0.3s;
+}
+
+.contact-info-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.contact-info-card h3 {
+    color: #1e3c72;
+    margin-bottom: 15px;
+}
+
+.contact-details p {
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+.contact-details strong {
+    color: #2a5298;
+}
+
+/* Большая карта */
+.map-container-large {
+    margin-bottom: 30px;
+}
+
+.map-wrapper {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Информация о транспорте */
+.transport-info h3 {
+    color: #1e3c72;
+    margin-bottom: 20px;
+}
+
+.transport-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.transport-item {
+    background: #f0f7ff;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #1e3c72;
+}
+
+.transport-item h4 {
+    color: #1e3c72;
+    margin-bottom: 10px;
+}
+
+.transport-item p {
+    color: #555;
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* Форма обратной связи */
+.feedback-form {
+    background: #f8f9fa;
+    padding: 30px;
+    border-radius: 8px;
+    border: 2px solid #1e3c72;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #1e3c72;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e9ecef;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+    box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #1e3c72;
+}
+
+.form-group textarea {
+    resize: vertical;
+    font-family: inherit;
+}
+
+.form-actions {
+    text-align: center;
+}
+
+.submit-btn {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(30, 60, 114, 0.3);
+}
+
+.form-note {
+    margin-top: 15px;
+    color: #666;
+    font-size: 0.9em;
+}
+
+/* Сетка сотрудников */
+.staff-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.staff-card {
+    display: flex;
+    gap: 20px;
+    background: #f8f9fa;
+    padding: 25px;
+    border-radius: 8px;
+    border-left: 4px solid #f8d568;
+    transition: transform 0.3s;
+}
+
+.staff-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.staff-photo .photo-placeholder {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 1.1em;
+    flex-shrink: 0;
+}
+
+.staff-info {
+    flex: 1;
+}
+
+.staff-info h4 {
+    color: #1e3c72;
+    margin-bottom: 8px;
+}
+
+.staff-position {
+    color: #f8d568;
+    font-weight: bold;
+    margin-bottom: 12px;
+    font-size: 0.9em;
+}
+
+.staff-contacts {
+    color: #555;
+    font-size: 0.9em;
+    line-height: 1.4;
+}
+
+.staff-contacts strong {
+    color: #1e3c72;
+}
+
+/* Адаптивность для contacts.html */
+@media (max-width: 768px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .transport-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .staff-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .staff-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .feedback-form {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .contacts-section {
+        padding: 20px;
+    }
+    
+    .quick-contacts,
+    .emergency-services,
+    .social-links {
+        gap: 8px;
+    }
+    
+    .contact-card,
+    .service-item,
+    .social-link {
+        padding: 10px;
+    }
+}
