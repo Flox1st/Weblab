@@ -1,10 +1,494 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Расписание - Ховринская Гимназия "Лампада"</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Шапка сайта -->
+    <header class="school-header">
+        <div class="header-container">
+            <div class="logo-section">
+                <div class="school-logo">
+                    <div class="logo-placeholder">Л</div>
+                </div>
+                <div class="school-titles">
+                    <h1 class="school-name">Ховринская Гимназия "Лампада"</h1>
+                    <p class="school-motto">Знание - свет, а незнание - тьма</p>
+                </div>
+            </div>
 
+            <div class="auth-section">
+                <div class="login-form">
+                    <input type="text" placeholder="Логин" id="loginInput">
+                    <input type="password" placeholder="Пароль" id="passwordInput">
+                    <button onclick="handleLogin()">Войти</button>
+                </div>
+                <div class="user-view" id="userView" style="display: none;">
+                    <span id="userGreeting"></span>
+                    <button onclick="handleLogout()">Выйти</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Основная навигация -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-link">Главная</a>
+            <a href="about.html" class="nav-link">О гимназии</a>
+            <a href="teachers.html" class="nav-link">Преподаватели</a>
+            <a href="schedule.html" class="nav-link active">Расписание</a>
+            <a href="news.html" class="nav-link">Новости</a>
+            <a href="students.html" class="nav-link">Ученикам</a>
+            <a href="parents.html" class="nav-link">Родителям</a>
+            <a href="contacts.html" class="nav-link">Контакты</a>
+        </div>
+    </nav>
+
+    <!-- Основной контент -->
+    <div class="main-container">
+        <!-- Боковая панель -->
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3>Расписания</h3>
+                <ul class="sidebar-links">
+                    <li><a href="#class-schedule">Уроки по классам</a></li>
+                    <li><a href="#bell-schedule">Расписание звонков</a></li>
+                    <li><a href="#electives">Факультативы</a></li>
+                    <li><a href="#events">Внеурочные мероприятия</a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>Выбор класса</h3>
+                <div class="class-selector">
+                    <select id="classSelect" class="filter-select">
+                        <option value="5a">5 "А" класс</option>
+                        <option value="5b">5 "Б" класс</option>
+                        <option value="6a">6 "А" класс</option>
+                        <option value="6b">6 "Б" класс</option>
+                        <option value="7a">7 "А" класс</option>
+                        <option value="7b">7 "Б" класс</option>
+                        <option value="8a">8 "А" класс</option>
+                        <option value="8b">8 "Б" класс</option>
+                        <option value="9a">9 "А" класс</option>
+                        <option value="9b">9 "Б" класс</option>
+                        <option value="10a">10 "А" класс</option>
+                        <option value="10b">10 "Б" класс</option>
+                        <option value="11a">11 "А" класс</option>
+                        <option value="11b">11 "Б" класс</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>Текущая неделя</h3>
+                <div class="week-info">
+                    <div class="week-number">Неделя 15</div>
+                    <div class="current-date" id="currentDate"></div>
+                    <div class="week-type" id="weekType"></div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Основная content area -->
+        <main class="content-area">
+            <section class="page-header">
+                <h1>Расписание занятий</h1>
+                <p class="page-subtitle">Актуальное расписание на текущую неделю</p>
+            </section>
+
+            <!-- Расписание уроков -->
+            <section id="class-schedule" class="schedule-section">
+                <div class="schedule-header">
+                    <h2>Расписание уроков</h2>
+                    <div class="schedule-controls">
+                        <button class="schedule-btn active" data-day="monday">Понедельник</button>
+                        <button class="schedule-btn" data-day="tuesday">Вторник</button>
+                        <button class="schedule-btn" data-day="wednesday">Среда</button>
+                        <button class="schedule-btn" data-day="thursday">Четверг</button>
+                        <button class="schedule-btn" data-day="friday">Пятница</button>
+                        <button class="schedule-btn" data-day="saturday">Суббота</button>
+                    </div>
+                </div>
+
+                <div class="schedule-content">
+                    <!-- Понедельник -->
+                    <div class="day-schedule active" id="monday">
+                        <div class="schedule-table">
+                            <div class="schedule-row header">
+                                <div class="schedule-cell time">Время</div>
+                                <div class="schedule-cell subject">Предмет</div>
+                                <div class="schedule-cell teacher">Преподаватель</div>
+                                <div class="schedule-cell classroom">Кабинет</div>
+                            </div>
+                            <div class="schedule-row">
+                                <div class="schedule-cell time">08:30-09:15</div>
+                                <div class="schedule-cell subject">Математика</div>
+                                <div class="schedule-cell teacher">Иванов В.П.</div>
+                                <div class="schedule-cell classroom">205</div>
+                            </div>
+                            <div class="schedule-row">
+                                <div class="schedule-cell time">09:25-10:10</div>
+                                <div class="schedule-cell subject">Русский язык</div>
+                                <div class="schedule-cell teacher">Смирнова М.В.</div>
+                                <div class="schedule-cell classroom">301</div>
+                            </div>
+                            <div class="schedule-row">
+                                <div class="schedule-cell time">10:20-11:05</div>
+                                <div class="schedule-cell subject">Английский язык</div>
+                                <div class="schedule-cell teacher">Васнецова К.О.</div>
+                                <div class="schedule-cell classroom">412</div>
+                            </div>
+                            <div class="schedule-row">
+                                <div class="schedule-cell time">11:25-12:10</div>
+                                <div class="schedule-cell subject">История</div>
+                                <div class="schedule-cell teacher">Николаев А.С.</div>
+                                <div class="schedule-cell classroom">215</div>
+                            </div>
+                            <div class="schedule-row">
+                                <div class="schedule-cell time">12:20-13:05</div>
+                                <div class="schedule-cell subject">Физическая культура</div>
+                                <div class="schedule-cell teacher">Соколов Д.М.</div>
+                                <div class="schedule-cell classroom">Спортзал</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Вторник -->
+                    <div class="day-schedule" id="tuesday">
+                        <div class="schedule-table">
+                            <div class="schedule-row header">
+                                <div class="schedule-cell time">Время</div>
+                                <div class="schedule-cell subject">Предмет</div>
+                                <div class="schedule-cell teacher">Преподаватель</div>
+                                <div class="schedule-cell classroom">Кабинет</div>
+                            </div>
+                            <div class="schedule-row">
+                                <div class="schedule-cell time">08:30-09:15</div>
+                                <div class="schedule-cell subject">Литература</div>
+                                <div class="schedule-cell teacher">Смирнова М.В.</div>
+                                <div class="schedule-cell classroom">301</div>
+                            </div>
+                            <div class="schedule-row">
+                                <div class="schedule-cell time">09:25-10:10</div>
+                                <div class="schedule-cell subject">Физика</div>
+                                <div class="schedule-cell teacher">Фёдоров С.А.</div>
+                                <div class="schedule-cell classroom">104</div>
+                            </div>
+                            <div class="schedule-row">
+                                <div class="schedule-cell time">10:20-11:05</div>
+                                <div class="schedule-cell subject">Химия</div>
+                                <div class="schedule-cell teacher">Орлова Н.Д.</div>
+                                <div class="schedule-cell classroom">105</div>
+                            </div>
+                            <div class="schedule-row">
+                                <div class="schedule-cell time">11:25-12:10</div>
+                                <div class="schedule-cell subject">География</div>
+                                <div class="schedule-cell teacher">Козлова Е.В.</div>
+                                <div class="schedule-cell classroom">208</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Расписание звонков -->
+            <section id="bell-schedule" class="schedule-section">
+                <h2>Расписание звонков</h2>
+                <div class="bells-grid">
+                    <div class="bell-item">
+                        <div class="bell-number">1</div>
+                        <div class="bell-time">08:30 - 09:15</div>
+                    </div>
+                    <div class="bell-item">
+                        <div class="bell-number">2</div>
+                        <div class="bell-time">09:25 - 10:10</div>
+                    </div>
+                    <div class="bell-item">
+                        <div class="bell-number">3</div>
+                        <div class="bell-time">10:20 - 11:05</div>
+                    </div>
+                    <div class="bell-item">
+                        <div class="bell-number">4</div>
+                        <div class="bell-time">11:25 - 12:10</div>
+                    </div>
+                    <div class="bell-item">
+                        <div class="bell-number">5</div>
+                        <div class="bell-time">12:20 - 13:05</div>
+                    </div>
+                    <div class="bell-item">
+                        <div class="bell-number">6</div>
+                        <div class="bell-time">13:15 - 14:00</div>
+                    </div>
+                    <div class="bell-item">
+                        <div class="bell-number">7</div>
+                        <div class="bell-time">14:10 - 14:55</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Факультативы -->
+            <section id="electives" class="schedule-section">
+                <h2>Факультативы и кружки</h2>
+                <div class="electives-grid">
+                    <div class="elective-card">
+                        <h4>Математический кружок</h4>
+                        <p><strong>Преподаватель:</strong> Иванов В.П.</p>
+                        <p><strong>Время:</strong> Понедельник, 15:00-16:30</p>
+                        <p><strong>Кабинет:</strong> 205</p>
+                    </div>
+                    <div class="elective-card">
+                        <h4>Литературный клуб</h4>
+                        <p><strong>Преподаватель:</strong> Смирнова М.В.</p>
+                        <p><strong>Время:</strong> Среда, 14:30-16:00</p>
+                        <p><strong>Кабинет:</strong> 301</p>
+                    </div>
+                    <div class="elective-card">
+                        <h4>Научное общество</h4>
+                        <p><strong>Преподаватель:</strong> Орлова Н.Д.</p>
+                        <p><strong>Время:</strong> Пятница, 15:00-17:00</p>
+                        <p><strong>Кабинет:</strong> 105</p>
+                    </div>
+                    <div class="elective-card">
+                        <h4>Театр на английском</h4>
+                        <p><strong>Преподаватель:</strong> Васнецова К.О.</p>
+                        <p><strong>Время:</strong> Вторник, 16:00-17:30</p>
+                        <p><strong>Кабинет:</strong> 412</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Подвал -->
+    <footer class="school-footer">
+        <div class="footer-container">
+            <div class="footer-info">
+                <p>&copy; 2023 Ховринская Гимназия "Лампада". Все права защищены.</p>
+                <p>Телефон: +7 (495) 123-45-67 | Email: info@lampada-gymnasium.ru</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function handleLogin() {
+            document.getElementById('userView').style.display = 'block';
+            document.querySelector('.login-form').style.display = 'none';
+            document.getElementById('userGreeting').textContent = 'Добро пожаловать!';
+        }
+
+        function handleLogout() {
+            document.getElementById('userView').style.display = 'none';
+            document.querySelector('.login-form').style.display = 'flex';
+        }
+
+        // Отображение текущей даты
+        function updateCurrentDate() {
+            const now = new Date();
+            const options = { day: 'numeric', month: 'long', year: 'numeric' };
+            document.getElementById('currentDate').textContent = now.toLocaleDateString('ru-RU', options);
+
+            // Простая логика для определения типа недели
+            const weekNumber = Math.floor((now.getDate() + now.getDay()) / 7) + 1;
+            document.getElementById('weekType').textContent = weekNumber % 2 === 0 ? 'Чётная неделя' : 'Нечётная неделя';
+        }
+
+        // Переключение дней расписания
+        document.querySelectorAll('.schedule-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Убираем активный класс у всех кнопок
+                document.querySelectorAll('.schedule-btn').forEach(b => b.classList.remove('active'));
+                // Добавляем активный класс текущей кнопке
+                this.classList.add('active');
+
+                // Скрываем все расписания
+                document.querySelectorAll('.day-schedule').forEach(schedule => {
+                    schedule.classList.remove('active');
+                });
+
+                // Показываем выбранное расписание
+                const day = this.getAttribute('data-day');
+                document.getElementById(day).classList.add('active');
+            });
+        });
+
+        // Плавная прокрутка
+        document.querySelectorAll('.sidebar-links a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Инициализация при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCurrentDate();
+        });
+    </script>
+<script>
+// Глобальные переменные для хранения состояния
+let currentUser = null;
+let authToken = localStorage.getItem('authToken');
+
+// Функция для проверки авторизации
+async function checkAuth() {
+    if (!authToken) {
+        return false;
+    }
+
+    try {
+        const response = await fetch('/api/users/me', {
+            headers: {
+                'Authorization': `Bearer ${authToken}`
+            }
+        });
+
+        if (response.ok) {
+            const userData = await response.json();
+            currentUser = userData;
+            updateAuthUI();
+            return true;
+        } else {
+            localStorage.removeItem('authToken');
+            authToken = null;
+            return false;
+        }
+    } catch (error) {
+        console.error('Auth check failed:', error);
+        return false;
+    }
+}
+
+// Функция для обновления UI в зависимости от авторизации
+function updateAuthUI() {
+    const loginForm = document.querySelector('.login-form');
+    const userView = document.getElementById('userView');
+    const userGreeting = document.getElementById('userGreeting');
+
+    if (currentUser) {
+        loginForm.style.display = 'none';
+        userView.style.display = 'block';
+        userGreeting.textContent = `Добро пожаловать, ${currentUser.full_name}!`;
+    } else {
+        loginForm.style.display = 'flex';
+        userView.style.display = 'none';
+    }
+}
+
+// Функция входа
+async function handleLogin() {
+    const loginInput = document.getElementById('loginInput');
+    const passwordInput = document.getElementById('passwordInput');
+
+    try {
+        const response = await fetch('/api/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                username: loginInput.value,
+                password: passwordInput.value
+            })
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            authToken = data.access_token;
+            currentUser = data.user;
+
+            localStorage.setItem('authToken', authToken);
+            updateAuthUI();
+
+            // Очищаем поля
+            loginInput.value = '';
+            passwordInput.value = '';
+        } else {
+            const errorData = await response.json();
+            alert(`Ошибка входа: ${errorData.detail}`);
+        }
+    } catch (error) {
+        console.error('Login error:', error);
+        alert('Ошибка соединения с сервером');
+    }
+}
+
+// Функция выхода
+function handleLogout() {
+    localStorage.removeItem('authToken');
+    authToken = null;
+    currentUser = null;
+    updateAuthUI();
+}
+
+// Функция регистрации
+async function handleRegister() {
+    // Можно добавить модальное окно для регистрации
+    const username = prompt('Введите имя пользователя:');
+    const email = prompt('Введите email:');
+    const password = prompt('Введите пароль:');
+    const fullName = prompt('Введите полное имя:');
+
+    if (username && email && password && fullName) {
+        try {
+            const response = await fetch('/api/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username: username,
+                    email: email,
+                    password: password,
+                    full_name: fullName,
+                    role: 'student'
+                })
+            });
+
+            if (response.ok) {
+                alert('Регистрация успешна! Теперь вы можете войти.');
+            } else {
+                const errorData = await response.json();
+                alert(`Ошибка регистрации: ${errorData.detail}`);
+            }
+        } catch (error) {
+            console.error('Registration error:', error);
+            alert('Ошибка соединения с сервером');
+        }
+    }
+}
+
+// Добавляем кнопку регистрации в HTML
+document.addEventListener('DOMContentLoaded', function() {
+    // Добавляем кнопку регистрации в форму логина
+    const loginForm = document.querySelector('.login-form');
+    const registerButton = document.createElement('button');
+    registerButton.type = 'button';
+    registerButton.textContent = 'Регистрация';
+    registerButton.style.marginTop = '5px';
+    registerButton.style.padding = '3px 8px';
+    registerButton.style.fontSize = '12px';
+    registerButton.style.background = 'transparent';
+    registerButton.style.border = '1px solid #fff';
+    registerButton.style.color = '#fff';
+    registerButton.style.cursor = 'pointer';
+    registerButton.onclick = handleRegister;
+
+    loginForm.appendChild(registerButton);
+
+    // Проверяем авторизацию при загрузке
+    checkAuth();
+});
+</script>
 </body>
 </html>

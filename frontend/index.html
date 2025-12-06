@@ -143,18 +143,152 @@
     </footer>
 
     <script>
-        function handleLogin() {
-            // Заглушка для функционала входа
-            document.getElementById('userView').style.display = 'block';
-            document.querySelector('.login-form').style.display = 'none';
-            document.getElementById('userGreeting').textContent = 'Добро пожаловать!';
-        }
+// Функция регистрации
+async function handleRegister() {
+    const username = prompt('Введите имя пользователя:');
+    const password = prompt('Введите пароль:');
+    const email = prompt('Введите email:');
 
-        function handleLogout() {
-            // Заглушка для функционала выхода
-            document.getElementById('userView').style.display = 'none';
-            document.querySelector('.login-form').style.display = 'flex';
+    if (username && password && email) {
+        try {
+            const response = await fetch('/api/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password: password,
+                    email: email
+                })
+            });
+
+            const result = await response.json();
+            alert(result.message);
+
+            if (result.success) {
+                // Автоматически входим после регистрации
+                handleLoginAfterRegister(username, password);
+            }
+        } catch (error) {
+            console.error('Registration error:', error);
+            alert('Ошибка соединения с сервером');
         }
-    </script>
+    }
+}
+
+// Функция входа после регистрации
+async function handleLoginAfterRegister(username, password) {
+    try {
+        const response = await fetch('/api/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                username: username,
+                password: password
+            })
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            // Сохраняем данные пользователя в localStorage
+            localStorage.setItem('currentUser', JSON.stringify(result.user));
+            updateAuthUI();
+            alert('Вход выполнен!');
+        } else {
+            alert(result.message);
+        }
+    } catch (error) {
+        console.error('Login error:', error);
+    }
+}
+
+// Функция входа
+async function handleLogin() {
+    const loginInput = document.getElementById('loginInput');
+    const passwordInput = document.getElementById('passwordInput');
+
+    try {
+        const response = await fetch('/api/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                username: loginInput.value,
+                password: passwordInput.value
+            })
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            // Сохраняем данные пользователя
+            localStorage.setItem('currentUser', JSON.stringify(result.user));
+            updateAuthUI();
+
+            // Очищаем поля
+            loginInput.value = '';
+            passwordInput.value = '';
+        } else {
+            alert(result.message);
+        }
+    } catch (error) {
+        console.error('Login error:', error);
+        alert('Ошибка соединения с сервером');
+    }
+}
+
+// Функция выхода
+function handleLogout() {
+    localStorage.removeItem('currentUser');
+    updateAuthUI();
+}
+
+// Обновление интерфейса
+function updateAuthUI() {
+    const loginForm = document.querySelector('.login-form');
+    const userView = document.getElementById('userView');
+    const userGreeting = document.getElementById('userGreeting');
+
+    const userData = JSON.parse(localStorage.getItem('currentUser') || 'null');
+
+    if (userData) {
+        loginForm.style.display = 'none';
+        userView.style.display = 'block';
+        userGreeting.textContent = `Привет, ${userData.username}!`;
+    } else {
+        loginForm.style.display = 'flex';
+        userView.style.display = 'none';
+    }
+}
+
+// Добавляем кнопку регистрации
+document.addEventListener('DOMContentLoaded', function() {
+    const loginForm = document.querySelector('.login-form');
+    if (loginForm) {
+        const registerButton = document.createElement('button');
+        registerButton.type = 'button';
+        registerButton.textContent = 'Регистрация';
+        registerButton.style.marginTop = '5px';
+        registerButton.style.padding = '3px 8px';
+        registerButton.style.fontSize = '12px';
+        registerButton.style.background = 'transparent';
+        registerButton.style.border = '1px solid #fff';
+        registerButton.style.color = '#fff';
+        registerButton.style.cursor = 'pointer';
+        registerButton.onclick = handleRegister;
+
+        loginForm.appendChild(registerButton);
+    }
+
+    // Проверяем авторизацию при загрузке
+    updateAuthUI();
+});
+</script>
+</script>
 </body>
 </html>
