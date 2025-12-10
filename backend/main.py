@@ -98,42 +98,109 @@ async def register(
 
 
 @app.post("/api/login")
-async def login(
-        username: str = Form(...),
-        password: str = Form(...)
-):
+async def login(request: Request):
     """Простой вход пользователя"""
-
-    hashed_password = hashlib.sha256(password.encode()).hexdigest()
-
-    conn = get_db_connection()
-    cursor = conn.cursor()
-
-    cursor.execute(
-        "SELECT * FROM users WHERE username = ? AND password = ?",
-        (username, hashed_password)
-    )
-
-    user = cursor.fetchone()
-    conn.close()
-
-    if user:
-        return {
-            "success": True,
-            "message": "Вход выполнен",
-            "user": {
-                "id": user['id'],
-                "username": user['username'],
-                "email": user['email'],
-                "created_at": user['created_at']
-            }
-        }
-    else:
-        return JSONResponse(
-            content={"success": False, "message": "Неверный логин или пароль"},
-            status_code=401
+    try:
+        print(f"=== DEBUG LOGIN REQUEST ===")
+        print(f"Headers: {dict(request.headers)}")
+        
+        content_type = request.headers.get('content-type', '')
+        print(f"Content-Type: {content_type}")
+        
+        username = None
+        password = None
+        
+        if 'multipart/form-data' in content_type:
+            print("Parsing multipart/form-data...")
+            form_data = await request.form()
+            print(f"Form data keys: {list(form_data.keys())}")
+            username = form_data.get("username")
+            password = form_data.get("password")
+            
+        elif 'application/x-www-form-urlencoded' in content_type:
+            print("Parsing x-www-form-urlencoded...")
+            form_data = await request.form()
+            username = form_data.get("username")
+            password = form_data.get("password")
+            
+        else:
+            print("Trying JSON...")
+            try:
+                json_data = await request.json()
+                username = json_data.get("username")
+                password = json_data.get("password")
+            except:
+                print("Failed to parse JSON")
+        
+        print(f"Extracted - username: '{username}', password: '{password}'")
+        print(f"Username type: {type(username)}, Password type: {type(password)}")
+        
+        if not username or not password:
+            print("ERROR: Empty fields!")
+            return JSONResponse(
+                content={"success": False, "message": "Логин и пароль обязательны"},
+                status_code=400
+            )
+        
+        # Преобразуем в строку если это не строка
+        if not isinstance(username, str):
+            username = str(username)
+        if not isinstance(password, str):
+            password = str(password)
+        
+        # Хэшируем пароль
+        import hashlib
+        hashed_password = hashlib.sha256(password.encode()).hexdigest()
+        print(f"Hashed password: {hashed_password[:20]}...")
+        
+        # Ищем пользователя в БД
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        
+        cursor.execute("SELECT * FROM users WHERE username = ?", (username,))
+        user = cursor.fetchone()
+        
+        if user:
+            print(f"User found: {user['username']}")
+            print(f"DB hash: {user['password'][:20]}...")
+            print(f"Input hash: {hashed_password[:20]}...")
+            print(f"Match: {user['password'] == hashed_password}")
+        
+        cursor.execute(
+            "SELECT * FROM users WHERE username = ? AND password = ?",
+            (username, hashed_password)
         )
-
+        
+        user = cursor.fetchone()
+        conn.close()
+        
+        if user:
+            print("✅ Login successful!")
+            return {
+                "success": True,
+                "message": "Вход выполнен",
+                "user": {
+                    "id": user['id'],
+                    "username": user['username'],
+                    "email": user['email'],
+                    "created_at": user['created_at']
+                }
+            }
+        else:
+            print("❌ Login failed")
+            return JSONResponse(
+                content={"success": False, "message": "Неверный логин или пароль"},
+                status_code=401
+            )
+            
+    except Exception as e:
+        print(f"Login error: {str(e)}")
+        import traceback
+        traceback.print_exc()
+        return JSONResponse(
+            content={"success": False, "message": f"Ошибка сервера: {str(e)}"},
+            status_code=500
+        )
 
 # ----------------- Обработка HTML страниц -----------------
 
@@ -157,6 +224,14 @@ async def serve_index(request: Request):
 async def serve_auth(request: Request):
     """Страница авторизации"""
     return templates.TemplateResponse("auth.html", {"request": request})
+
+@app.get("/register")
+async def serve_register():
+    """Страница регистрации"""
+    register_path = FRONTEND_DIR / "register.html"
+    if register_path.exists():
+        return FileResponse(str(register_path))
+    return FileResponse(str(FRONTEND_DIR / "index.html"))
 
 
 # Динамические маршруты для всех остальных страниц

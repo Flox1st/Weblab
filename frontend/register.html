@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ховринская Гимназия "Лампада" - Регистрация</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header class="school-header">
+        <div class="header-container">
+            <div class="logo-section">
+                <div class="school-logo">
+                    <div class="logo-placeholder">Л</div>
+                </div>
+                <div class="school-titles">
+                    <h1 class="school-name">Ховринская Гимназия "Лампада"</h1>
+                    <p class="school-motto">Знание - свет, а незнание - тьма</p>
+                </div>
+            </div>
+
+            <div class="auth-section">
+                <div class="login-form">
+                    <input type="text" placeholder="Логин" id="loginInput">
+                    <input type="password" placeholder="Пароль" id="passwordInput">
+                    <button onclick="handleLogin()">Войти</button>
+                </div>
+                <div class="user-view" id="userView" style="display: none;">
+                    <span id="userGreeting"></span>
+                    <button onclick="handleLogout()">Выйти</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Основная навигация -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="/" class="nav-link">Главная</a>
+            <a href="/about" class="nav-link">О гимназии</a>
+            <a href="/teachers" class="nav-link">Преподаватели</a>
+            <a href="/schedule" class="nav-link">Расписание</a>
+            <a href="/news" class="nav-link">Новости</a>
+            <a href="/students" class="nav-link">Ученикам</a>
+            <a href="/parents" class="nav-link">Родителям</a>
+            <a href="/contacts" class="nav-link">Контакты</a>
+        </div>
+    </nav>
+
+    <!-- Основной контент - регистрация -->
+    <!-- Основной контент -->
+<div class="main-container">
+    <!-- Боковая панель -->
+    <aside class="sidebar">
+        <div class="sidebar-section">
+            <h3>Быстрая навигация</h3>
+            <ul class="sidebar-links">
+                <li><a href="/">На главную</a></li>
+                <li><a href="/contacts">Контакты</a></li>
+                <li><a href="/about">О гимназии</a></li>
+                <li><a href="/parents">Информация для родителей</a></li>
+            </ul>
+        </div>
+
+        <div class="sidebar-section">
+            <h3>Полезная информация</h3>
+            <div class="announcements">
+                <div class="announcement-item">
+                    <span class="announcement-date">Важно!</span>
+                    <p>После регистрации проверьте почту для подтверждения</p>
+                </div>
+                <div class="announcement-item">
+                    <span class="announcement-date">Поддержка</span>
+                    <p>Вопросы по регистрации: support@lampada-gymnasium.ru</p>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Основная content area -->
+    <main class="content-area">
+        <!-- Контейнер регистрации -->
+        <div class="registration-container">
+            <div class="registration-header">
+                <h1>Регистрация в системе</h1>
+                <p class="registration-subtitle">Станьте частью нашей образовательной семьи</p>
+            </div>
+
+            <div class="registration-content">
+                <!-- Шаги регистрации -->
+                <div class="registration-steps">
+                    <div class="step-item active">
+                        <div class="step-circle">1</div>
+                        <div class="step-label">Основные данные</div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-circle">2</div>
+                        <div class="step-label">Дополнительная информация</div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-circle">3</div>
+                        <div class="step-label">Подтверждение</div>
+                    </div>
+                </div>
+
+                <!-- Форма регистрации -->
+                <form id="registrationForm" class="registration-form" onsubmit="submitRegistration(event)">
+                    <!-- Шаг 1: Основные данные -->
+                    <div class="form-section" id="step1">
+                        <h3>Основные данные</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="username">Логин <span class="required">*</span></label>
+                                <input type="text" id="username" name="username" required 
+                                       placeholder="Введите логин" minlength="3" maxlength="50">
+                                <div class="error-message" id="usernameError"></div>
+                                <div class="form-hint">От 3 до 50 символов (только буквы, цифры и подчеркивание)</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email <span class="required">*</span></label>
+                                <input type="email" id="email" name="email" required 
+                                       placeholder="example@email.com">
+                                <div class="error-message" id="emailError"></div>
+                                <div class="form-hint">На этот email придет подтверждение</div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="password">Пароль <span class="required">*</span></label>
+                                <input type="password" id="password" name="password" required 
+                                       placeholder="Не менее 8 символов" minlength="8">
+                                <div class="error-message" id="passwordError"></div>
+                                <div class="form-hint">Минимум 8 символов, включая буквы и цифры</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="confirmPassword">Подтверждение пароля <span class="required">*</span></label>
+                                <input type="password" id="confirmPassword" name="confirmPassword" required 
+                                       placeholder="Повторите пароль">
+                                <div class="error-message" id="confirmPasswordError"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Шаг 2: Дополнительная информация -->
+                    <div class="form-section" id="step2" style="display: none;">
+                        <h3>Дополнительная информация</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fullName">ФИО <span class="required">*</span></label>
+                                <input type="text" id="fullName" name="fullName" required 
+                                       placeholder="Иванов Иван Иванович">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phone">Телефон</label>
+                                <input type="tel" id="phone" name="phone" 
+                                       placeholder="+7 (999) 123-45-67">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="userType">Тип пользователя <span class="required">*</span></label>
+                                <select id="userType" name="userType" required>
+                                    <option value="">Выберите тип</option>
+                                    <option value="student">Ученик</option>
+                                    <option value="parent">Родитель</option>
+                                    <option value="teacher">Преподаватель</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="classGroup">Класс / Группа</label>
+                                <input type="text" id="classGroup" name="classGroup" 
+                                       placeholder="Например: 10А или Математика">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Шаг 3: Соглашения -->
+                    <div class="form-section" id="step3" style="display: none;">
+                        <h3>Соглашения и подтверждение</h3>
+                        
+                        <div class="form-group full-width">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="terms" name="terms" required>
+                                <label for="terms">
+                                    Я согласен с <a href="/terms" target="_blank">Пользовательским соглашением</a> 
+                                    и <a href="/privacy" target="_blank">Политикой конфиденциальности</a>
+                                    <span class="required">*</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="newsletter" name="newsletter">
+                                <label for="newsletter">
+                                    Я хочу получать уведомления о новостях гимназии и важных событиях
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <p class="form-hint">
+                                <strong>Важно:</strong> После регистрации вам будет необходимо подтвердить email. 
+                                Проверьте папку "Спам", если письмо не пришло в течение 15 минут.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Кнопки управления -->
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-back" onclick="goToPreviousStep()" style="display: none;">
+                            ← Назад
+                        </button>
+                        
+                        <button type="button" class="btn btn-next" onclick="goToNextStep()">
+                            Далее →
+                        </button>
+                        
+                        <button type="submit" class="btn btn-submit" style="display: none;">
+                            Зарегистрироваться
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Результат регистрации -->
+                <div class="registration-result" id="registrationResult">
+                    <div class="result-icon" id="resultIcon">✓</div>
+                    <h2 id="resultTitle">Регистрация успешна!</h2>
+                    <p id="resultMessage">
+                        Ваша учетная запись успешно создана. Проверьте вашу электронную почту 
+                        для подтверждения регистрации.
+                    </p>
+                    <div class="form-actions">
+                        <a href="/" class="btn btn-back">На главную</a>
+                        <a href="/" class="btn btn-submit">Войти в систему</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+    <!-- Подвал -->
+    <footer class="school-footer">
+        <div class="footer-container">
+            <div class="footer-info">
+                <p>&copy; 2023 Ховринская Гимназия "Лампада". Все права защищены.</p>
+                <p>Телефон: +7 (495) 123-45-67 | Email: info@lampada-gymnasium.ru</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Управление шагами формы
+        let currentStep = 1;
+        const totalSteps = 3;
+
+        function goToNextStep() {
+            if (!validateCurrentStep()) {
+                return;
+            }
+
+            if (currentStep < totalSteps) {
+                document.getElementById(`step${currentStep}`).style.display = 'none';
+                currentStep++;
+                document.getElementById(`step${currentStep}`).style.display = 'block';
+                updateUI();
+            }
+        }
+
+        function goToPreviousStep() {
+            if (currentStep > 1) {
+                document.getElementById(`step${currentStep}`).style.display = 'none';
+                currentStep--;
+                document.getElementById(`step${currentStep}`).style.display = 'block';
+                updateUI();
+            }
+        }
+
+        function updateUI() {
+            // Обновляем шаги
+            document.querySelectorAll('.step-item').forEach((step, index) => {
+                step.classList.remove('active', 'completed');
+                if (index + 1 < currentStep) {
+                    step.classList.add('completed');
+                } else if (index + 1 === currentStep) {
+                    step.classList.add('active');
+                }
+            });
+
+            // Обновляем кнопки
+            const backBtn = document.querySelector('.btn-back');
+            const nextBtn = document.querySelector('.btn-next');
+            const submitBtn = document.querySelector('.btn-submit');
+
+            backBtn.style.display = currentStep > 1 ? 'inline-flex' : 'none';
+            nextBtn.style.display = currentStep < totalSteps ? 'inline-flex' : 'none';
+            submitBtn.style.display = currentStep === totalSteps ? 'inline-flex' : 'none';
+        }
+
+        // Валидация текущего шага
+        function validateCurrentStep() {
+            let isValid = true;
+            const stepElement = document.getElementById(`step${currentStep}`);
+
+            // Сбрасываем ошибки
+            stepElement.querySelectorAll('.error-message').forEach(el => {
+                el.style.display = 'none';
+            });
+            stepElement.querySelectorAll('.error').forEach(el => {
+                el.classList.remove('error');
+            });
+
+            if (currentStep === 1) {
+                // Валидация логина
+                const username = document.getElementById('username').value.trim();
+                if (username.length < 3 || username.length > 50) {
+                    showError('username', 'Логин должен быть от 3 до 50 символов');
+                    isValid = false;
+                } else if (!/^[a-zA-Z0-9_]+$/.test(username)) {
+                    showError('username', 'Логин может содержать только буквы, цифры и подчеркивание');
+                    isValid = false;
+                }
+
+                // Валидация email
+                const email = document.getElementById('email').value.trim();
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    showError('email', 'Введите корректный email адрес');
+                    isValid = false;
+                }
+
+                // Валидация пароля
+                const password = document.getElementById('password').value;
+                if (password.length < 8) {
+                    showError('password', 'Пароль должен быть не менее 8 символов!');
+                    isValid = false;
+                } else if (!/(?=.*[a-zA-Z])(?=.*\d)/.test(password)) {
+                    showError('password', 'Пароль должен содержать буквы и цифры!');
+                    isValid = false;
+                }
+
+                // Подтверждение пароля
+                const confirmPassword = document.getElementById('confirmPassword').value;
+                if (password !== confirmPassword) {
+                    showError('confirmPassword', 'Пароли не совпадают');
+                    isValid = false;
+                }
+            } else if (currentStep === 2) {
+                // Валидация ФИО
+                const fullName = document.getElementById('fullName').value.trim();
+                if (fullName.length < 2) {
+                    showError('fullName', 'Введите корректное ФИО');
+                    isValid = false;
+                }
+
+                // Валидация типа пользователя
+                const userType = document.getElementById('userType').value;
+                if (!userType) {
+                    showError('userType', 'Выберите тип пользователя');
+                    isValid = false;
+                }
+            } else if (currentStep === 3) {
+                // Валидация согласия
+                const terms = document.getElementById('terms').checked;
+                if (!terms) {
+                    alert('Для регистрации необходимо принять Пользовательское соглашение');
+                    isValid = false;
+                }
+            }
+
+            return isValid;
+        }
+
+        function showError(fieldId, message) {
+            const field = document.getElementById(fieldId);
+            const errorElement = document.getElementById(`${fieldId}Error`);
+
+            field.classList.add('error');
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+        }
+
+        // Отправка формы регистрации
+        async function submitRegistration(event) {
+            event.preventDefault();
+
+            if (!validateCurrentStep()) {
+                return;
+            }
+
+            const formData = {
+                username: document.getElementById('username').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                password: document.getElementById('password').value,
+                fullName: document.getElementById('fullName').value.trim(),
+                phone: document.getElementById('phone').value.trim(),
+                userType: document.getElementById('userType').value,
+                classGroup: document.getElementById('classGroup').value.trim(),
+                newsletter: document.getElementById('newsletter').checked
+            };
+
+            try {
+                // Отправляем данные на сервер
+                const response = await fetch('/api/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: new URLSearchParams(formData)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    // Показываем успешный результат
+                    document.getElementById('registrationForm').style.display = 'none';
+                    document.getElementById('registrationResult').style.display = 'block';
+
+                    // Сохраняем данные для автоматического входа
+                    localStorage.setItem('pendingRegistration', JSON.stringify({
+                        username: formData.username,
+                        password: formData.password
+                    }));
+                } else {
+                    // Показываем ошибку
+                    document.getElementById('resultIcon').textContent = '✗';
+                    document.getElementById('resultIcon').classList.add('error');
+                    document.getElementById('resultTitle').textContent = 'Ошибка регистрации';
+                    document.getElementById('resultMessage').textContent = result.message || 'Произошла ошибка при регистрации';
+
+                    document.getElementById('registrationForm').style.display = 'none';
+                    document.getElementById('registrationResult').style.display = 'block';
+                }
+            } catch (error) {
+                console.error('Registration error:', error);
+                alert('Ошибка соединения с сервером. Пожалуйста, попробуйте позже.');
+            }
+        }
+
+        // Функции для авторизации (как в index.html)
+        async function handleLogin() {
+            const loginInput = document.getElementById('loginInput');
+            const passwordInput = document.getElementById('passwordInput');
+
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `username=${encodeURIComponent(loginInput.value)}&password=${encodeURIComponent(passwordInput.value)}`
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    localStorage.setItem('currentUser', JSON.stringify(result.user));
+                    updateAuthUI();
+                    alert('Вход выполнен!');
+
+                    // Редирект на главную
+                    window.location.href = '/';
+                } else {
+                    alert(result.message);
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                alert('Ошибка соединения с сервером');
+            }
+        }
+
+        function handleLogout() {
+            localStorage.removeItem('currentUser');
+            updateAuthUI();
+        }
+
+        function updateAuthUI() {
+            const loginForm = document.querySelector('.login-form');
+            const userView = document.getElementById('userView');
+            const userGreeting = document.getElementById('userGreeting');
+
+            const userData = JSON.parse(localStorage.getItem('currentUser') || 'null');
+
+            if (userData) {
+                loginForm.style.display = 'none';
+                userView.style.display = 'block';
+                userGreeting.textContent = `Привет, ${userData.username}!`;
+            } else {
+                loginForm.style.display = 'flex';
+                userView.style.display = 'none';
+            }
+        }
+
+        // Инициализация при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
+            updateUI();
+            updateAuthUI();
+
+            // Автоматический вход после регистрации, если есть сохраненные данные
+            const pending = JSON.parse(localStorage.getItem('pendingRegistration') || 'null');
+            if (pending) {
+                handleAutoLogin(pending);
+                localStorage.removeItem('pendingRegistration');
+            }
+        });
+
+        async function handleAutoLogin(credentials) {
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `username=${encodeURIComponent(credentials.username)}&password=${encodeURIComponent(credentials.password)}`
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    localStorage.setItem('currentUser', JSON.stringify(result.user));
+                }
+            } catch (error) {
+                console.error('Auto login error:', error);
+            }
+        }
+    </script>
+    <script src="/static/auth.js"></script>
+</body>
+</html>

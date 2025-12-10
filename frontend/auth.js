@@ -1,141 +1,147 @@
-// Переключение между вкладками
-function showTab(tabName) {
-    // Скрыть все формы
-    const forms = document.querySelectorAll('.auth-form');
-    forms.forEach(form => form.classList.remove('active'));
+// auth.js - общий скрипт для всех страниц
 
-    // Убрать активный класс со всех кнопок
-    const tabs = document.querySelectorAll('.auth-tab');
-    tabs.forEach(tab => tab.classList.remove('active'));
-
-    // Показать нужную форму и активировать кнопку
-    document.getElementById(tabName + 'Form').classList.add('active');
-    event.target.classList.add('active');
-}
-
-// Обработка формы входа
-document.getElementById('loginForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    const email = document.getElementById('loginEmail').value;
-    const password = document.getElementById('loginPassword').value;
-
-    // Простая проверка - если поля не пустые
-    if (email && password) {
-        // Сохраняем данные пользователя
-        localStorage.setItem('user', JSON.stringify({
-            name: 'Иванова Мария Петровна',
-            email: email,
-            childName: 'Иванов Алексей',
-            phone: '+7 (999) 123-45-67'
-        }));
-
-        // Перенаправление в личный кабинет
-        window.location.href = 'profile.html';
-    } else {
-        alert('Заполните все поля');
-    }
-});
-
-// Обработка формы регистрации
-document.getElementById('registerForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    const name = document.getElementById('regName').value;
-    const email = document.getElementById('regEmail').value;
-    const phone = document.getElementById('regPhone').value;
-    const childName = document.getElementById('regChildName').value;
-    const password = document.getElementById('regPassword').value;
-    const confirmPassword = document.getElementById('regConfirmPassword').value;
-
-    if (password !== confirmPassword) {
-        alert('Пароли не совпадают');
+// Функция входа
+async function handleLogin(event) {
+    if (event) event.preventDefault();
+    
+    // Находим поля формы
+    const loginForm = event ? event.target.closest('.login-form') : document.querySelector('.login-form');
+    if (!loginForm) return;
+    
+    // Ищем поля ввода
+    const usernameInput = loginForm.querySelector('input[type="text"], input[name="username"], #loginInput');
+    const passwordInput = loginForm.querySelector('input[type="password"], input[name="password"], #passwordInput');
+    
+    if (!usernameInput || !passwordInput) {
+        alert('Форма входа не найдена');
         return;
     }
-
-    // Если все поля заполнены и пароли совпадают
-    if (name && email && phone && childName && password) {
-        // Сохраняем данные пользователя
-        localStorage.setItem('user', JSON.stringify({
-            name: name,
-            email: email,
-            childName: childName,
-            phone: phone
-        }));
-
-        alert('Регистрация прошла успешно!');
-        window.location.href = 'profile.html';
-    } else {
-        alert('Заполните все поля');
+    
+    const username = usernameInput.value.trim();
+    const password = passwordInput.value;
+    
+    console.log('Login attempt:', { username, passwordLength: password.length });
+    
+    // Валидация
+    if (!username || !password) {
+        alert('Пожалуйста, заполните все поля');
+        return;
     }
-});
+    
+    try {
+        // Отправляем данные
+        const formData = new FormData();
+        formData.append('username', username);
+        formData.append('password', password);
+        
+        const response = await fetch('/api/login', {
+            method: 'POST',
+            body: formData
+        });
+        
+        const result = await response.json();
+        console.log('Login result:', result);
+        
+        if (result.success) {
+            // Сохраняем данные
+            localStorage.setItem('currentUser', JSON.stringify(result.user));
+            
+            // Обновляем UI
+            updateAuthUI();
+            
+            // Очищаем поля
+            usernameInput.value = '';
+            passwordInput.value = '';
+            
+            // Показываем уведомление
+            alert('✅ Вход выполнен успешно!');
+        } else {
+            alert('❌ ' + result.message);
+        }
+    } catch (error) {
+        console.error('Login error:', error);
+        alert('🚫 Ошибка соединения с сервером');
+    }
+}
 
-// Проверка авторизации при загрузке
+// Функция выхода
+function handleLogout() {
+    localStorage.removeItem('currentUser');
+    updateAuthUI();
+    // Перенаправляем на главную
+    window.location.href = '/';
+}
+
+// Обновление интерфейса
+function updateAuthUI() {
+    const loginForm = document.querySelector('.login-form');
+    const userView = document.getElementById('userView');
+    const userGreeting = document.getElementById('userGreeting');
+
+    if (!loginForm || !userView) return;
+
+    const userData = getCurrentUser();
+
+    if (userData) {
+        loginForm.style.display = 'none';
+        userView.style.display = 'block';
+        if (userGreeting) {
+            userGreeting.textContent = `Привет, ${userData.username}!`;
+        }
+    } else {
+        loginForm.style.display = 'flex';
+        userView.style.display = 'none';
+    }
+}
+
+// Получение текущего пользователя
+function getCurrentUser() {
+    const userStr = localStorage.getItem('currentUser');
+    if (!userStr) return null;
+    
+    try {
+        return JSON.parse(userStr);
+    } catch (e) {
+        console.error('Error parsing user data:', e);
+        return null;
+    }
+}
+
+// Инициализация при загрузке
 document.addEventListener('DOMContentLoaded', function() {
-    const user = localStorage.getItem('user');
-    if (user && window.location.pathname.includes('auth.html')) {
-        window.location.href = 'profile.html';
+    console.log('Auth script loaded');
+    
+    // Находим форму
+    const loginForm = document.querySelector('.login-form');
+    if (loginForm) {
+        // Добавляем обработчик если его нет
+        if (!loginForm.hasAttribute('data-handler-added')) {
+            // Ищем кнопку входа
+            const loginButton = loginForm.querySelector('button[onclick*="handleLogin"], button:not([onclick])');
+            
+            if (loginButton) {
+                // Заменяем onclick
+                loginButton.onclick = function(e) {
+                    handleLogin(e);
+                    return false;
+                };
+            }
+            
+            // Также добавляем обработчик на саму форму
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                handleLogin(e);
+            });
+            
+            loginForm.setAttribute('data-handler-added', 'true');
+        }
     }
-});
-// Синхронизация с header после входа/регистрации
-function syncWithHeader() {
-    if (typeof updateHeaderAuth === 'function') {
-        updateHeaderAuth();
-    }
-    if (typeof updateNavLinks === 'function') {
-        updateNavLinks();
-    }
-}
-
-// Обновляем обработчики форм в auth.js
-document.getElementById('loginForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    const email = document.getElementById('loginEmail').value;
-    const password = document.getElementById('loginPassword').value;
-
-    if (email && password) {
-        localStorage.setItem('user', JSON.stringify({
-            name: 'Иванова Мария Петровна',
-            email: email,
-            childName: 'Иванов Алексей',
-            phone: '+7 (999) 123-45-67'
-        }));
-
-        syncWithHeader();
-        window.location.href = 'profile.html';
-    } else {
-        alert('Заполните все поля');
-    }
+    
+    // Обновляем UI
+    updateAuthUI();
 });
 
-document.getElementById('registerForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    const name = document.getElementById('regName').value;
-    const email = document.getElementById('regEmail').value;
-    const phone = document.getElementById('regPhone').value;
-    const childName = document.getElementById('regChildName').value;
-    const password = document.getElementById('regPassword').value;
-    const confirmPassword = document.getElementById('regConfirmPassword').value;
-
-    if (password !== confirmPassword) {
-        alert('Пароли не совпадают');
-        return;
-    }
-
-    if (name && email && phone && childName && password) {
-        localStorage.setItem('user', JSON.stringify({
-            name: name,
-            email: email,
-            childName: childName,
-            phone: phone
-        }));
-
-        syncWithHeader();
-        alert('Регистрация прошла успешно!');
-        window.location.href = 'profile.html';
-    } else {
-        alert('Заполните все поля');
-    }
-});
+// Делаем функции доступными глобально
+window.handleLogin = handleLogin;
+window.handleLogout = handleLogout;
+window.updateAuthUI = updateAuthUI;
