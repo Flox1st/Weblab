@@ -53,6 +53,59 @@
         </div>
     </nav>
 
+     <section class="carousel-section">
+        <div class="carousel-container">
+            <!-- Счетчик слайдов -->
+            <div class="carousel-counter">
+                <span id="currentSlide">1</span> / <span id="totalSlides">5</span>
+            </div>
+            
+            <!-- Контейнер слайдов -->
+            <div class="carousel-slides" id="carouselSlides">
+                <!-- Слайд 1 -->
+                <div class="carousel-slide active">
+                    <img src="/static/images/carousel/1st_september.jpg" alt="Гимназия Лампада" class="carousel-image">
+                    <div class="carousel-caption">
+                        <h3>Добро пожаловать в гимназию "Лампада"</h3>
+                        <p>Современное образование с традиционными ценностями</p>
+                    </div>
+                </div>
+                
+                <!-- Слайд 2 -->
+                <div class="carousel-slide">
+                    <img src="/static/images/carousel/championship.jpg" alt="Учебные классы" class="carousel-image">
+                    <div class="carousel-caption">
+                        <h3>Современные классы и лаборатории</h3>
+                        <p>Оборудование последнего поколения для эффективного обучения</p>
+                    </div>
+                </div>
+                
+                <!-- Слайд 3 -->
+                <div class="carousel-slide">
+                    <img src="/static/images/carousel/new_sport.jpg" alt="Спортивные достижения" class="carousel-image">
+                    <div class="carousel-caption">
+                        <h3>Спортивные достижения</h3>
+                        <p>Наши ученики - победители региональных и всероссийских соревнований</p>
+                    </div>
+                </div>
+            </div> <!-- Закрывающий тег для .carousel-slides -->
+            
+            <!-- Кнопки навигации -->
+            <button class="carousel-btn prev" onclick="prevSlide()">‹</button>
+            <button class="carousel-btn next" onclick="nextSlide()">›</button>
+            
+            <!-- Индикаторы -->
+            <div class="carousel-indicators" id="carouselIndicators">
+                <!-- Индикаторы будут созданы JavaScript -->
+            </div>
+            
+            <!-- Контролы -->
+            <div class="carousel-controls">
+                <button class="control-btn" id="pauseBtn" onclick="toggleAutoPlay()">⏸</button>
+            </div>
+        </div>
+    </section>
+
     <!-- Основной контент -->
     <div class="main-container">
         <!-- Боковая панель -->
@@ -128,10 +181,8 @@
             <h2>Как нас найти</h2>
             <p class="address">Москва, Ховрино, ул. Фестивальная, д. 123</p>
             <div class="map-wrapper">
-                <!-- Карта Яндекс -->
-                <script type="text/javascript" charset="utf-8" async
-                    <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A3f98f36f46658db31a5c44c15d5eec204f974d873a9ff17a48b34eb72a974431&amp;width=1200&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script>
-                </script>
+                <!-- Исправленная карта Яндекс -->
+                <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A3f98f36f46658db31a5c44c15d5eec204f974d873a9ff17a48b34eb72a974431&amp;width=1200&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script>
             </div>
         </div>
     </section>
@@ -140,11 +191,230 @@
     <footer class="school-footer">
         <div class="footer-container">
             <div class="footer-info">
-                <p>&copy; 2023 Ховринская Гимназия "Лампада". Все права защищены.</p>
+                <p>&copy; 2025 Ховринская Гимназия "Лампада". Все права защищены.</p>
                 <p>Телефон: +7 (495) 123-45-67 | Email: info@lampada-gymnasium.ru</p>
             </div>
         </div>
     </footer>
 <script src="/static/auth.js"></script>
+<script>
+// Карусель изображений
+class Carousel {
+    constructor() {
+        this.slides = document.querySelectorAll('.carousel-slide');
+        this.indicatorsContainer = document.getElementById('carouselIndicators');
+        this.currentSlide = 0;
+        this.totalSlides = this.slides.length;
+        this.autoPlayInterval = null;
+        this.autoPlayDelay = 5000; // 5 секунд
+        this.isPlaying = true;
+        
+        this.init();
+    }
+    
+    init() {
+        // Создаем индикаторы
+        this.createIndicators();
+        
+        // Обновляем счетчик
+        this.updateCounter();
+        
+        // Запускаем автопрокрутку
+        this.startAutoPlay();
+        
+        // Добавляем обработчики для индикаторов
+        this.addIndicatorsListeners();
+        
+        // Добавляем обработчики клавиатуры
+        this.addKeyboardListeners();
+        
+        // Добавляем обработчик для паузы при наведении
+        this.addHoverListeners();
+        
+        // Отладочная информация
+        console.log('Карусель инициализирована. Слайдов:', this.totalSlides);
+    }
+    
+    createIndicators() {
+        this.indicatorsContainer.innerHTML = '';
+        
+        for (let i = 0; i < this.totalSlides; i++) {
+            const indicator = document.createElement('div');
+            indicator.className = `carousel-indicator ${i === 0 ? 'active' : ''}`;
+            indicator.dataset.index = i;
+            this.indicatorsContainer.appendChild(indicator);
+        }
+    }
+    
+    addIndicatorsListeners() {
+        const indicators = document.querySelectorAll('.carousel-indicator');
+        indicators.forEach(indicator => {
+            indicator.addEventListener('click', (e) => {
+                const index = parseInt(e.target.dataset.index);
+                this.goToSlide(index);
+            });
+        });
+    }
+    
+    addKeyboardListeners() {
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                this.prevSlide();
+            } else if (e.key === 'ArrowRight') {
+                this.nextSlide();
+            } else if (e.key === ' ') {
+                e.preventDefault();
+                this.toggleAutoPlay();
+            }
+        });
+    }
+    
+    addHoverListeners() {
+        const carousel = document.querySelector('.carousel-container');
+        carousel.addEventListener('mouseenter', () => {
+            this.pauseAutoPlay();
+        });
+        
+        carousel.addEventListener('mouseleave', () => {
+            if (this.isPlaying) {
+                this.startAutoPlay();
+            }
+        });
+    }
+    
+    goToSlide(index) {
+        console.log('Переход к слайду:', index);
+        
+        // Скрываем все слайды
+        this.slides.forEach(slide => {
+            slide.classList.remove('active');
+        });
+        
+        // Показываем выбранный слайд
+        this.slides[index].classList.add('active');
+        
+        // Обновляем текущий слайд
+        this.currentSlide = index;
+        
+        // Обновляем индикаторы
+        this.updateIndicators();
+        
+        // Обновляем счетчик
+        this.updateCounter();
+        
+        // Перезапускаем автопрокрутку
+        this.restartAutoPlay();
+    }
+    
+    nextSlide() {
+        let nextIndex = this.currentSlide + 1;
+        if (nextIndex >= this.totalSlides) {
+            nextIndex = 0; // Возвращаемся к первому слайду
+        }
+        this.goToSlide(nextIndex);
+    }
+    
+    prevSlide() {
+        let prevIndex = this.currentSlide - 1;
+        if (prevIndex < 0) {
+            prevIndex = this.totalSlides - 1; // Переходим к последнему слайду
+        }
+        this.goToSlide(prevIndex);
+    }
+    
+    updateIndicators() {
+        const indicators = document.querySelectorAll('.carousel-indicator');
+        indicators.forEach((indicator, index) => {
+            if (index === this.currentSlide) {
+                indicator.classList.add('active');
+            } else {
+                indicator.classList.remove('active');
+            }
+        });
+    }
+    
+    updateCounter() {
+        document.getElementById('currentSlide').textContent = this.currentSlide + 1;
+        document.getElementById('totalSlides').textContent = this.totalSlides;
+    }
+    
+    startAutoPlay() {
+        if (this.autoPlayInterval) {
+            clearInterval(this.autoPlayInterval);
+        }
+        
+        this.autoPlayInterval = setInterval(() => {
+            this.nextSlide();
+        }, this.autoPlayDelay);
+        
+        this.isPlaying = true;
+        this.updatePlayButton();
+    }
+    
+    pauseAutoPlay() {
+        if (this.autoPlayInterval) {
+            clearInterval(this.autoPlayInterval);
+            this.autoPlayInterval = null;
+        }
+        
+        this.isPlaying = false;
+        this.updatePlayButton();
+    }
+    
+    restartAutoPlay() {
+        this.pauseAutoPlay();
+        if (this.isPlaying) {
+            this.startAutoPlay();
+        }
+    }
+    
+    toggleAutoPlay() {
+        if (this.isPlaying) {
+            this.pauseAutoPlay();
+        } else {
+            this.startAutoPlay();
+        }
+    }
+    
+    updatePlayButton() {
+        const pauseBtn = document.getElementById('pauseBtn');
+        if (pauseBtn) {
+            pauseBtn.textContent = this.isPlaying ? '⏸' : '▶';
+            pauseBtn.title = this.isPlaying ? 'Пауза' : 'Продолжить';
+        }
+    }
+}
+
+// Инициализация карусели при загрузке страницы
+let carousel;
+
+document.addEventListener('DOMContentLoaded', function() {
+    carousel = new Carousel();
+    
+    // Делаем функции доступными глобально для кнопок
+    window.prevSlide = () => carousel.prevSlide();
+    window.nextSlide = () => carousel.nextSlide();
+    window.toggleAutoPlay = () => carousel.toggleAutoPlay();
+    
+    // Предзагрузка изображений для плавной работы
+    preloadImages();
+});
+
+// Функция предзагрузки изображений
+function preloadImages() {
+    const images = [
+        '/static/images/carousel/1st_september.jpg',
+        '/static/images/carousel/championship.jpg',
+        '/static/images/carousel/new_sport.jpg'
+    ];
+    
+    images.forEach(src => {
+        const img = new Image();
+        img.src = src;
+        img.onload = () => console.log('Изображение загружено:', src);
+        img.onerror = () => console.error('Ошибка загрузки изображения:', src);
+    });
+}
+</script>
 </body>
 </html>
