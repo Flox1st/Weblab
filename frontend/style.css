@@ -291,9 +291,8 @@ h4 { color: var(--secondary-blue); font-size: 1.2em; }
 
 /* Форма авторизации */
 .auth-section {
-    display: flex;
-    flex-direction: column;
     align-items: flex-end;
+    margin-right: 50px;  
 }
 
 .login-form {
@@ -2875,5 +2874,247 @@ h4 { color: var(--secondary-blue); font-size: 1.2em; }
         box-shadow: none !important;
         border: 1px solid #ddd !important;
         page-break-inside: avoid;
+    }
+}
+
+/* ===== КАРУСЕЛЬ ===== */
+.carousel-section {
+    margin: var(--space-xl) auto;
+    max-width: 1200px;
+    padding: 0 var(--space-md);
+}
+
+.carousel-container {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+}
+
+.carousel-slides {
+    position: relative;
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    height: 400px;
+}
+
+.carousel-slide {
+    min-width: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+    position: relative;
+}
+
+.carousel-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.carousel-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    color: var(--white);
+    padding: var(--space-lg);
+    text-align: center;
+}
+
+.carousel-caption h3 {
+    font-size: 1.8em;
+    margin-bottom: var(--space-sm);
+    color: var(--accent-yellow);
+}
+
+.carousel-caption p {
+    font-size: 1.1em;
+    opacity: 0.9;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Кнопки навигации */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(30, 60, 114, 0.7);
+    color: var(--white);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    transition: all 0.3s;
+    z-index: 10;
+}
+
+.carousel-btn:hover {
+    background: rgba(30, 60, 114, 1);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-btn.prev {
+    left: 20px;
+}
+
+.carousel-btn.next {
+    right: 20px;
+}
+
+/* Индикаторы */
+.carousel-indicators {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    z-index: 10;
+}
+
+.carousel-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: var(--radius-full);
+    background: rgba(255,255,255,0.5);
+    border: 2px solid rgba(255,255,255,0.8);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.carousel-indicator.active {
+    background: var(--accent-yellow);
+    border-color: var(--accent-yellow);
+    transform: scale(1.2);
+}
+
+.carousel-indicator:hover {
+    background: var(--white);
+    transform: scale(1.1);
+}
+
+/* Контролы */
+.carousel-controls {
+    position: absolute;
+    bottom: 60px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+}
+
+.control-btn {
+    background: rgba(30, 60, 114, 0.7);
+    color: var(--white);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    transition: all 0.3s;
+}
+
+.control-btn:hover {
+    background: rgba(30, 60, 114, 1);
+    transform: scale(1.1);
+}
+
+/* Счетчик слайдов */
+.carousel-counter {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(0,0,0,0.6);
+    color: var(--white);
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 0.9em;
+    z-index: 10;
+}
+
+/* Анимация для плавного появления */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.carousel-slide {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Адаптивность для карусели */
+@media (max-width: 768px) {
+    .carousel-section {
+        margin: var(--space-lg) auto;
+        padding: 0 var(--space-sm);
+    }
+    
+    .carousel-slides {
+        height: 300px;
+    }
+    
+    .carousel-caption {
+        padding: var(--space-md);
+    }
+    
+    .carousel-caption h3 {
+        font-size: 1.4em;
+    }
+    
+    .carousel-caption p {
+        font-size: 1em;
+    }
+    
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2em;
+    }
+    
+    .carousel-indicators {
+        bottom: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-slides {
+        height: 250px;
+    }
+    
+    .carousel-caption h3 {
+        font-size: 1.2em;
+    }
+    
+    .carousel-caption p {
+        font-size: 0.9em;
+        display: none; 
+    }
+    
+    .carousel-counter {
+        top: 10px;
+        right: 10px;
+        font-size: 0.8em;
     }
 }

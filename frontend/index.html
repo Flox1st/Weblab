@@ -75,8 +75,8 @@
                 <div class="carousel-slide">
                     <img src="/static/images/carousel/championship.jpg" alt="Учебные классы" class="carousel-image">
                     <div class="carousel-caption">
-                        <h3>Современные классы и лаборатории</h3>
-                        <p>Оборудование последнего поколения для эффективного обучения</p>
+                        <h3>Спортивные мероприятия</h3>
+                        <p>Разнообразный досуг</p>
                     </div>
                 </div>
                 
@@ -114,7 +114,7 @@
                 <h3>Быстрый доступ</h3>
                 <ul class="sidebar-links">
                     <li><a href="electronic-diary.html">Электронный дневник</a></li>
-                    <li><a href="bell-schedule.html">Расписание звонков</a></li>
+                    <li><a href="program.html">Программа</a></li>
                     <li><a href="library.html">Электронная библиотека</a></li>
                     <li><a href="events.html">Мероприятия</a></li>
                 </ul>
@@ -182,7 +182,7 @@
             <p class="address">Москва, Ховрино, ул. Фестивальная, д. 123</p>
             <div class="map-wrapper">
                 <!-- Исправленная карта Яндекс -->
-                <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A3f98f36f46658db31a5c44c15d5eec204f974d873a9ff17a48b34eb72a974431&amp;width=1200&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script>
+                <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A3f98f36f46658db31a5c44c15d5eec204f974d873a9ff17a48b34eb72a974431&amp;width=2000&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script>
             </div>
         </div>
     </section>
@@ -202,6 +202,7 @@
 class Carousel {
     constructor() {
         this.slides = document.querySelectorAll('.carousel-slide');
+        this.slidesContainer = document.getElementById('carouselSlides');
         this.indicatorsContainer = document.getElementById('carouselIndicators');
         this.currentSlide = 0;
         this.totalSlides = this.slides.length;
@@ -213,6 +214,14 @@ class Carousel {
     }
     
     init() {
+        // Проверяем, есть ли слайды
+        if (this.totalSlides === 0) {
+            console.error('Карусель: слайды не найдены');
+            return;
+        }
+        
+        console.log('Карусель инициализирована. Слайдов:', this.totalSlides);
+        
         // Создаем индикаторы
         this.createIndicators();
         
@@ -231,11 +240,13 @@ class Carousel {
         // Добавляем обработчик для паузы при наведении
         this.addHoverListeners();
         
-        // Отладочная информация
-        console.log('Карусель инициализирована. Слайдов:', this.totalSlides);
+        // Показываем первый слайд
+        this.showSlide(this.currentSlide);
     }
     
     createIndicators() {
+        if (!this.indicatorsContainer) return;
+        
         this.indicatorsContainer.innerHTML = '';
         
         for (let i = 0; i < this.totalSlides; i++) {
@@ -271,6 +282,8 @@ class Carousel {
     
     addHoverListeners() {
         const carousel = document.querySelector('.carousel-container');
+        if (!carousel) return;
+        
         carousel.addEventListener('mouseenter', () => {
             this.pauseAutoPlay();
         });
@@ -282,9 +295,7 @@ class Carousel {
         });
     }
     
-    goToSlide(index) {
-        console.log('Переход к слайду:', index);
-        
+    showSlide(index) {
         // Скрываем все слайды
         this.slides.forEach(slide => {
             slide.classList.remove('active');
@@ -292,6 +303,18 @@ class Carousel {
         
         // Показываем выбранный слайд
         this.slides[index].classList.add('active');
+    }
+    
+    goToSlide(index) {
+        if (index < 0 || index >= this.totalSlides) {
+            console.error('Карусель: неверный индекс слайда', index);
+            return;
+        }
+        
+        console.log('Переход к слайду:', index);
+        
+        // Показываем слайд
+        this.showSlide(index);
         
         // Обновляем текущий слайд
         this.currentSlide = index;
@@ -334,8 +357,16 @@ class Carousel {
     }
     
     updateCounter() {
-        document.getElementById('currentSlide').textContent = this.currentSlide + 1;
-        document.getElementById('totalSlides').textContent = this.totalSlides;
+        const currentSlideEl = document.getElementById('currentSlide');
+        const totalSlidesEl = document.getElementById('totalSlides');
+        
+        if (currentSlideEl) {
+            currentSlideEl.textContent = this.currentSlide + 1;
+        }
+        
+        if (totalSlidesEl) {
+            totalSlidesEl.textContent = this.totalSlides;
+        }
     }
     
     startAutoPlay() {
@@ -389,15 +420,19 @@ class Carousel {
 let carousel;
 
 document.addEventListener('DOMContentLoaded', function() {
-    carousel = new Carousel();
-    
-    // Делаем функции доступными глобально для кнопок
-    window.prevSlide = () => carousel.prevSlide();
-    window.nextSlide = () => carousel.nextSlide();
-    window.toggleAutoPlay = () => carousel.toggleAutoPlay();
-    
-    // Предзагрузка изображений для плавной работы
-    preloadImages();
+    try {
+        carousel = new Carousel();
+        
+        // Делаем функции доступными глобально для кнопок
+        window.prevSlide = () => carousel.prevSlide();
+        window.nextSlide = () => carousel.nextSlide();
+        window.toggleAutoPlay = () => carousel.toggleAutoPlay();
+        
+        // Предзагрузка изображений для плавной работы
+        preloadImages();
+    } catch (error) {
+        console.error('Ошибка инициализации карусели:', error);
+    }
 });
 
 // Функция предзагрузки изображений

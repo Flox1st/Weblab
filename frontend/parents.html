@@ -7,11 +7,11 @@
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-    <!-- Шапка сайта -->
     <header class="school-header">
         <div class="header-container">
             <div class="logo-section">
                 <div class="school-logo">
+                    <!-- Место для логотипа гимназии -->
                     <div class="logo-placeholder">Л</div>
                 </div>
                 <div class="school-titles">
@@ -19,12 +19,16 @@
                     <p class="school-motto">Знание - свет, а незнание - тьма</p>
                 </div>
             </div>
-            
+
             <div class="auth-section">
                 <div class="login-form">
                     <input type="text" placeholder="Логин" id="loginInput">
                     <input type="password" placeholder="Пароль" id="passwordInput">
                     <button onclick="handleLogin()">Войти</button>
+                    <!-- Добавьте эту ссылку -->
+                    <a href="/register" style="margin-top: 8px; text-align: center; display: block; color: white; font-size: 12px; text-decoration: none;">
+                        Регистрация
+                    </a>
                 </div>
                 <div class="user-view" id="userView" style="display: none;">
                     <span id="userGreeting"></span>

@@ -7,15 +7,34 @@
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <img src="https://lampada-obr.ru/images/demo/logo.png" alt="Логотип">
-        </div>
-        <div class="site-name">Ховринская Гимназия "Лампадка"</div>
-        <div class="login-form">
-            <input type="text" placeholder="Логин">
-            <input type="password" placeholder="Пароль">
-            <button>Войти</button>
+    <header class="school-header">
+        <div class="header-container">
+            <div class="logo-section">
+                <div class="school-logo">
+                    <!-- Место для логотипа гимназии -->
+                    <div class="logo-placeholder">Л</div>
+                </div>
+                <div class="school-titles">
+                    <h1 class="school-name">Ховринская Гимназия "Лампада"</h1>
+                    <p class="school-motto">Знание - свет, а незнание - тьма</p>
+                </div>
+            </div>
+
+            <div class="auth-section">
+                <div class="login-form">
+                    <input type="text" placeholder="Логин" id="loginInput">
+                    <input type="password" placeholder="Пароль" id="passwordInput">
+                    <button onclick="handleLogin()">Войти</button>
+                    <!-- Добавьте эту ссылку -->
+                    <a href="/register" style="margin-top: 8px; text-align: center; display: block; color: white; font-size: 12px; text-decoration: none;">
+                        Регистрация
+                    </a>
+                </div>
+                <div class="user-view" id="userView" style="display: none;">
+                    <span id="userGreeting"></span>
+                    <button onclick="handleLogout()">Выйти</button>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -88,176 +107,6 @@
             <p>&copy; 2025 Лампадка. Все права защищены.</p>
         </div>
     </footer>
-<script>
-    // Простая проверка авторизации для навигации
-    document.addEventListener('DOMContentLoaded', function() {
-        const user = localStorage.getItem('user');
-        const authLinks = document.querySelectorAll('a[href="auth.html"]');
-
-        if (user) {
-            authLinks.forEach(link => {
-                link.href = 'profile.html';
-                link.textContent = 'Личный кабинет';
-            });
-        }
-    });
-</script>
-<script src="header-auth.js"></script>
-<script>
-// Глобальные переменные для хранения состояния
-let currentUser = null;
-let authToken = localStorage.getItem('authToken');
-
-// Функция для проверки авторизации
-async function checkAuth() {
-    if (!authToken) {
-        return false;
-    }
-
-    try {
-        const response = await fetch('/api/users/me', {
-            headers: {
-                'Authorization': `Bearer ${authToken}`
-            }
-        });
-
-        if (response.ok) {
-            const userData = await response.json();
-            currentUser = userData;
-            updateAuthUI();
-            return true;
-        } else {
-            localStorage.removeItem('authToken');
-            authToken = null;
-            return false;
-        }
-    } catch (error) {
-        console.error('Auth check failed:', error);
-        return false;
-    }
-}
-
-// Функция для обновления UI в зависимости от авторизации
-function updateAuthUI() {
-    const loginForm = document.querySelector('.login-form');
-    const userView = document.getElementById('userView');
-    const userGreeting = document.getElementById('userGreeting');
-
-    if (currentUser) {
-        loginForm.style.display = 'none';
-        userView.style.display = 'block';
-        userGreeting.textContent = `Добро пожаловать, ${currentUser.full_name}!`;
-    } else {
-        loginForm.style.display = 'flex';
-        userView.style.display = 'none';
-    }
-}
-
-// Функция входа
-async function handleLogin() {
-    const loginInput = document.getElementById('loginInput');
-    const passwordInput = document.getElementById('passwordInput');
-
-    try {
-        const response = await fetch('/api/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                username: loginInput.value,
-                password: passwordInput.value
-            })
-        });
-
-        if (response.ok) {
-            const data = await response.json();
-            authToken = data.access_token;
-            currentUser = data.user;
-
-            localStorage.setItem('authToken', authToken);
-            updateAuthUI();
-
-            // Очищаем поля
-            loginInput.value = '';
-            passwordInput.value = '';
-        } else {
-            const errorData = await response.json();
-            alert(`Ошибка входа: ${errorData.detail}`);
-        }
-    } catch (error) {
-        console.error('Login error:', error);
-        alert('Ошибка соединения с сервером');
-    }
-}
-
-// Функция выхода
-function handleLogout() {
-    localStorage.removeItem('authToken');
-    authToken = null;
-    currentUser = null;
-    updateAuthUI();
-}
-
-// Функция регистрации
-async function handleRegister() {
-    // Можно добавить модальное окно для регистрации
-    const username = prompt('Введите имя пользователя:');
-    const email = prompt('Введите email:');
-    const password = prompt('Введите пароль:');
-    const fullName = prompt('Введите полное имя:');
-
-    if (username && email && password && fullName) {
-        try {
-            const response = await fetch('/api/register', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    username: username,
-                    email: email,
-                    password: password,
-                    full_name: fullName,
-                    role: 'student'
-                })
-            });
-
-            if (response.ok) {
-                alert('Регистрация успешна! Теперь вы можете войти.');
-            } else {
-                const errorData = await response.json();
-                alert(`Ошибка регистрации: ${errorData.detail}`);
-            }
-        } catch (error) {
-            console.error('Registration error:', error);
-            alert('Ошибка соединения с сервером');
-        }
-    }
-}
-
-// Добавляем кнопку регистрации в HTML
-document.addEventListener('DOMContentLoaded', function() {
-    // Добавляем кнопку регистрации в форму логина
-    const loginForm = document.querySelector('.login-form');
-    const registerButton = document.createElement('button');
-    registerButton.type = 'button';
-    registerButton.textContent = 'Регистрация';
-    registerButton.style.marginTop = '5px';
-    registerButton.style.padding = '3px 8px';
-    registerButton.style.fontSize = '12px';
-    registerButton.style.background = 'transparent';
-    registerButton.style.border = '1px solid #fff';
-    registerButton.style.color = '#fff';
-    registerButton.style.cursor = 'pointer';
-    registerButton.onclick = handleRegister;
-
-    loginForm.appendChild(registerButton);
-
-    // Проверяем авторизацию при загрузке
-    checkAuth();
-});
-</script>
 <script src="/static/auth.js"></script>
 </body>
 </html>
