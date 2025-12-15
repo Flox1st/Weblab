@@ -45,6 +45,7 @@ async function handleLogin(event) {
         if (result.success) {
             // Сохраняем данные
             localStorage.setItem('currentUser', JSON.stringify(result.user));
+            localStorage.setItem('userLoggedIn', 'true');
             
             // Обновляем UI
             updateAuthUI();
@@ -67,6 +68,7 @@ async function handleLogin(event) {
 // Функция выхода
 function handleLogout() {
     localStorage.removeItem('currentUser');
+    localStorage.setItem('userLoggedIn', 'false');
     updateAuthUI();
     // Перенаправляем на главную
     window.location.href = '/';
